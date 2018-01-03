@@ -14,15 +14,15 @@ class GamesController < ApplicationController
 
   def update
     @game = Game.find( params[:id] )
-    params[:game][:images].each { |image| @game.photos.create(img: image) }
+    @game.update( game_params )
+    params[:game][:images].each { |image| @game.photos.create(img: image) } if params[:game][:images]
     @game.save
-    # @game.update( game_params )
     redirect_to game_path(@game)
   end
 
   private
 
   def game_params
-    params.require(:game).permit(:images)
+    params.require(:game).permit(:images, :title, :teaser, :included, :not_included, :difficulty, :price)
   end
 end

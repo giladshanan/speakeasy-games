@@ -31,6 +31,8 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
+
 gem "paperclip", "~> 5.0.0"
 gem 'aws-sdk', '~> 2.3.0'
 
@@ -41,6 +43,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.7'
   gem 'capybara'
   gem 'simplecov', :require => false
+  gem 'dotenv-rails'
 end
 
 group :development do

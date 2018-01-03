@@ -1,5 +1,7 @@
 # README
 
+#todo - clean up photos table (remove url column)
+
 This README would normally document whatever steps are necessary to get the
 application up and running.
 

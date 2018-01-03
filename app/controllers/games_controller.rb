@@ -8,6 +8,10 @@ class GamesController < ApplicationController
     @game = Game.find(params[:id])
   end
 
+  def edit
+    @game = Game.find(params[:id])
+  end
+
   def update
     @game = Game.find( params[:id] )
     params[:game][:images].each { |image| @game.photos.create(img: image) }

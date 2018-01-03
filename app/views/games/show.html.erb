@@ -10,4 +10,15 @@
   <p><%= @game.difficulty %></p>
   <h2>Price: </h2>
   <p><%= number_to_currency(@game.price) %></p>
+  <h2>Photos</h2>
+  <% @game.photos.each do |photo| %>
+    <!-- <img src="/assets/<%=photo.url%>"> -->
+    <%= image_tag(photo.img.url(:medium)) %>
+  <% end %>
+</div>
+<div>
+  <%= form_for @game, url: game_path, html: { multipart: true } do |form| %>
+    <%= form.file_field :images, multiple: true %>
+    <%= form.submit %>
+  <% end %>
 </div>

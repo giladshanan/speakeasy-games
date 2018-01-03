@@ -5,7 +5,7 @@ class CreateGames < ActiveRecord::Migration[5.1]
       t.text :teaser
       t.text :included
       t.text :not_included
-      t.integer :difficulty
+      t.string :difficulty
       t.decimal :price
       t.string :url
       t.timestamps

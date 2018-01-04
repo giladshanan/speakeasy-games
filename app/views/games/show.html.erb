@@ -1,5 +1,6 @@
 <div>
   <h1><%= @game.title %></h1>
+  <%= render :template => 'charges/new', locals: {game: @game} %>
   <h2>About the game:</h2>
   <p><%= @game.teaser %></p>
   <h2>What's Included: </h2>
@@ -8,8 +9,6 @@
   <p><%= @game.not_included %></p>
   <h2>Difficulty Level: </h2>
   <p><%= @game.difficulty %></p>
-  <h2>Price: </h2>
-  <p><%= number_to_currency(@game.price) %></p>
   <h2>Photos</h2>
   <% @game.photos.each do |photo| %>
     <%= image_tag(photo.img.url(:medium)) %>
@@ -19,4 +18,3 @@
   <%= link_to "Edit", edit_game_path(@game) %> | <%= link_to "Home", root_path %>
 </div>
 
-<%= render :template => 'charges/new', locals: {game: @game} %>

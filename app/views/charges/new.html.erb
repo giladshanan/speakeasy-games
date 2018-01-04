@@ -6,7 +6,7 @@
       </div>
     <% end %>
     <label class="amount">
-      <span>Price: <%= number_to_currency(@game.price) %></span>
+      <span>Price: <%= number_to_currency(@game.price/100) %></span>
     </label>
   </article>
 

@@ -8,7 +8,7 @@ silver = Game.create(
   included: "Invitations; rules; detailed character notes for 17 different roles, including backstory, goals, and specific knowledge about other characters; printable paper props; decorating and site layout suggestions; detailed instructions for moderators; prop list",
   not_included: "Most physical materials, including character props",
   difficulty: "Medium",
-  price: 25.00
+  price: 2500
   )
 
 # > Moderator Difficulty - Medium

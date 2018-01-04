@@ -6,32 +6,19 @@
       </div>
     <% end %>
     <label class="amount">
-      <span>Amount: $5.00</span>
+      <span>Price: $25.00</span>
     </label>
   </article>
 
-  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-          data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-          data-description="A month's subscription"
-          data-zip-code="true"
-          data-amount="500"
-          data-locale="auto"
-          data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
-          data-name="Demo Site">
-    </script>
+  <script
+    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+    data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+    data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+    data-name="Speakeasy Games"
+    data-description="Silver of Burnt Grass"
+    data-amount="2500"
+    data-zip-code="true"
+    data-locale="auto"
+    >
+  </script>
 <% end %>
-
-<!--  -->
-<!--  -->
-<form action=<%= charges_path %> method="POST">
-    <script
-      src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-      data-key="pk_test_8pCT2xKYCt5FLoxUdBuQIwcQ"
-      data-amount="2000"
-      data-name="Demo Site"
-      data-description="2 widgets"
-      data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
-      data-zip-code="true"
-      data-locale="auto">
-    </script>
-  </form>

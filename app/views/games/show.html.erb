@@ -18,18 +18,5 @@
 <div>
   <%= link_to "Edit", edit_game_path(@game) %> | <%= link_to "Home", root_path %>
 </div>
-<%= link_to "Buy the Game", new_charge_path  %>
-<div>
-  <form action=<%= charge_path %> method="POST">
-    <script
-      src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-      data-key="pk_test_8pCT2xKYCt5FLoxUdBuQIwcQ"
-      data-amount="2000"
-      data-name="Demo Site"
-      data-description="2 widgets"
-      data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
-      data-zip-code="true"
-      data-locale="auto">
-    </script>
-  </form>
-</div>
+
+<%= render :template => 'charges/new' %>

@@ -6,14 +6,17 @@ class GamesController < ApplicationController
   end
 
   def show
+    @games = Game.all
     @game = Game.find(params[:id])
   end
 
   def edit
+    @games = Game.all
     @game = Game.find(params[:id])
   end
 
   def update
+    @games = Game.all
     @game = Game.find( params[:id] )
     @game.update( game_params )
     params[:game][:images].each { |image| @game.photos.create(img: image) } if params[:game][:images]
@@ -22,6 +25,7 @@ class GamesController < ApplicationController
   end
 
   def destroy
+    @games = Game.all
     @game = Game.find( params[:id] )
     @game.destroy
     redirect_to root_path

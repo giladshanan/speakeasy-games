@@ -1,0 +1,24 @@
+<%= form_tag charges_path do %>
+  <article>
+    <% if flash[:error].present? %>
+      <div id="error_explanation">
+        <p><%= flash[:error] %></p>
+      </div>
+    <% end %>
+    <label class="amount">
+      <span>Price: <%= number_to_currency(@game.price/100) %></span>
+    </label>
+  </article>
+
+  <script
+    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+    data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+    data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+    data-name="Speakeasy Games"
+    data-description="<%= @game.title %>"
+    data-amount="<%= @game.price %>"
+    data-zip-code="true"
+    data-locale="auto"
+    >
+  </script>
+<% end %>

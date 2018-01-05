@@ -13,7 +13,7 @@
       <h2>About the game:</h2>
       <p><%= game.teaser %></p>
       <h2>Price: </h2>
-      <p><%= number_to_currency(game.price) %></p>
+      <p><%= number_to_currency(game.price/100) %></p>
     </div>
   <% end %>
 </div>

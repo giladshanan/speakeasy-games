@@ -18,21 +18,27 @@
   </head>
 
   <body class="w3-content" style="max-width:1200px">
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-
     <!-- Sidebar/menu -->
     <nav class="w3-sidebar w3-bar-block w3-white w3-collapse w3-top" style="z-index:3;width:250px" id="mySidebar">
       <div class="w3-container w3-display-container w3-padding-16">
         <i onclick="w3_close()" class="fa fa-remove w3-hide-large w3-button w3-display-topright"></i>
-        <h3 class="w3-wide"><b>LOGO</b></h3>
+        <h3 class="w3-wide"><b><%= link_to "LOGO", root_path, class: "w3-button" %></b></h3>
       </div>
       <div class="w3-padding-64 w3-large w3-text-grey" style="font-weight:bold">
-        <% @games.each do | game | %>
-          <%= link_to game.title, game_path(game), class: "w3-bar-item w3-button" %>
+        <% if @games %>
+          <% @games.each do | game | %>
+            <%= link_to game.title, game_path(game), class: "w3-bar-item w3-button" %>
+          <% end %>
         <% end %>
       </div>
 
+      <% if current_user %>
+        <% if @game %>
+          <%= link_to "Edit", edit_game_path(@game), class: "w3-bar-item w3-button w3-left" %>
+        <% end %>
+        <%= link_to "Logout", destroy_user_session_path, method: "DELETE", class: "w3-bar-item w3-button w3-right" %>
+      <% end %>
+      <%= link_to "Home", root_path, class: "w3-bar-item w3-button w3-left" %>
       <a href="#footer" class="w3-bar-item w3-button w3-padding">Contact</a>
     </nav>
 
@@ -60,10 +66,9 @@
       </header>
 
       <div class="w3-container w3-text-grey" id="jeans">
+        <p class="notice"><%= notice %></p>
+        <p class="alert"><%= alert %></p>
         <%= yield %>
-        <% if current_user %>
-          <%= link_to "Logout", destroy_user_session_path, method: "DELETE", class: "w3-bar-item w3-button w3-right" %>
-        <% end %>
       </div>
 
       <!-- Footer -->
@@ -81,56 +86,37 @@
             </form>
           </div>
 
-          <div class="w3-col s4">
-            <h4>About</h4>
-            <p><a href="#">About us</a></p>
-            <p><a href="#">We're hiring</a></p>
-            <p><a href="#">Support</a></p>
-            <p><a href="#">Find store</a></p>
-            <p><a href="#">Shipment</a></p>
-            <p><a href="#">Payment</a></p>
-            <p><a href="#">Gift card</a></p>
-            <p><a href="#">Return</a></p>
-            <p><a href="#">Help</a></p>
-          </div>
-
           <div class="w3-col s4 w3-justify">
-            <h4>Store</h4>
-            <p><i class="fa fa-fw fa-map-marker"></i> Company Name</p>
-            <p><i class="fa fa-fw fa-phone"></i> 0044123123</p>
+            <h4>Email</h4>
             <p><i class="fa fa-fw fa-envelope"></i> ex@mail.com</p>
             <h4>We accept</h4>
-            <p><i class="fa fa-fw fa-cc-amex"></i> Amex</p>
             <p><i class="fa fa-fw fa-credit-card"></i> Credit Card</p>
             <br>
             <i class="fa fa-facebook-official w3-hover-opacity w3-large"></i>
             <i class="fa fa-instagram w3-hover-opacity w3-large"></i>
-            <i class="fa fa-snapchat w3-hover-opacity w3-large"></i>
-            <i class="fa fa-pinterest-p w3-hover-opacity w3-large"></i>
             <i class="fa fa-twitter w3-hover-opacity w3-large"></i>
-            <i class="fa fa-linkedin w3-hover-opacity w3-large"></i>
           </div>
         </div>
       </footer>
 
-      <div class="w3-black w3-center w3-padding-24">Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-opacity">w3.css</a></div>
+      <div class="w3-black w3-center w3-padding-24">Web development by Gilad Shanan, powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-opacity">w3.css</a></div>
 
       <!-- End page content -->
     </div>
 
     <script>
     // Accordion
-    function myAccFunc() {
-        var x = document.getElementById("demoAcc");
-        if (x.className.indexOf("w3-show") == -1) {
-            x.className += " w3-show";
-        } else {
-            x.className = x.className.replace(" w3-show", "");
-        }
-    }
+    // function myAccFunc() {
+    //     var x = document.getElementById("demoAcc");
+    //     if (x.className.indexOf("w3-show") == -1) {
+    //         x.className += " w3-show";
+    //     } else {
+    //         x.className = x.className.replace(" w3-show", "");
+    //     }
+    // }
 
     // Click on the "Jeans" link on page load to open the accordion for demo purposes
-    document.getElementById("myBtn").click();
+    // document.getElementById("myBtn").click();
 
 
     // Script to open and close sidebar

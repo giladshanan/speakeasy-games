@@ -1,19 +1,18 @@
+<!-- Image header -->
+<div class="w3-display-container w3-container">
+  <img src="/assets/cowboy.jpg" alt="Yippe Kayay!" style="width:100%">
+  <div class="w3-display-topleft w3-text-white" style="padding:24px 48px">
+    <h1 class="w3-jumbo w3-hide-small">Welcome!</h1>
+    <h1 class="w3-hide-large w3-hide-medium">Welcome!</h1>
+    <h1 class="w3-hide-small">Let's Play</h1>
+  </div>
+</div>
+
 <div>
-  <h1>Speakeasy Games</h1>
   <p>Welcome to Speakeasy Games!  This is where we describe the games and you decide to buy them.</p>
 </div>
+
 <div>
   <h2>Photos and Testimonials</h2>
   <p>Generalized photos and testimonials will go here</p>
-</div>
-<div>
-  <% @games.each do | game | %>
-    <div>
-      <h1><%= link_to game.title, game_path(game) %></h1>
-      <h2>About the game:</h2>
-      <p><%= game.teaser %></p>
-      <h2>Price: </h2>
-      <p><%= number_to_currency(game.price/100) %></p>
-    </div>
-  <% end %>
 </div>

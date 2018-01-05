@@ -9,6 +9,11 @@
   </head>
 
   <body>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
     <%= yield %>
+    <% if current_user %>
+      <%= link_to "Logout", destroy_user_session_path, method: "DELETE", class: "w3-bar-item w3-button w3-right" %>
+    <% end %>
   </body>
 </html>

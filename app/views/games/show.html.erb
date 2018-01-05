@@ -10,4 +10,11 @@
   <p><%= @game.difficulty %></p>
   <h2>Price: </h2>
   <p><%= number_to_currency(@game.price) %></p>
+  <h2>Photos</h2>
+  <% @game.photos.each do |photo| %>
+    <%= image_tag(photo.img.url(:medium)) %>
+  <% end %>
+</div>
+<div>
+  <%= link_to "Edit", edit_game_path(@game) %> | <%= link_to "Home", root_path %>
 </div>

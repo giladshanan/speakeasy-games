@@ -1,0 +1,45 @@
+<h1><%= @game.title %></h1>
+<p><%= link_to "Delete Game", game_path(@game), method: "DELETE", :data => {:confirm => 'Are you sure you want to delete this game? This cannot be undone.'} %></p>
+<div>
+  <%= form_for @game, url: game_path, html: { multipart: true } do |form| %>
+    <div>
+      <label>Title:</label>
+      <%= form.text_area :title %>
+    </div>
+    <div>
+      <label>Teaser:</label>
+      <%= form.text_area :teaser %>
+    </div>
+    <div>
+      <label>Included:</label>
+      <%= form.text_area :included %>
+    </div>
+    <div>
+      <label>Not included:</label>
+      <%= form.text_area :not_included %>
+    </div>
+    <div>
+      <label>Difficulty:</label>
+      <%= form.select :difficulty, options_for_select([ "Easy", "Medium", "Difficult" ], @game.difficulty) %>
+    </div>
+    <div>
+      <label>Price:</label>
+      <%= form.text_field :price %>
+    </div>
+    <div>
+      <label>Add Photos:</label>
+      <%= form.file_field :images, multiple: true %>
+      <%= form.submit %>
+    </div>
+  <% end %>
+</div>
+<div>
+  <h2>Delete Photos:</h2>
+  <% @game.photos.each do |photo| %>
+    <%= image_tag(photo.img.url(:medium), id: photo.id) %>
+    <%= link_to "Delete", photo_path(photo), method: "DELETE", :data => {:confirm => 'Are you sure you want to delete this photo?'} %>
+  <% end %>
+</div>
+<div>
+  <%= link_to "Back", game_path(@game) %>
+</div>

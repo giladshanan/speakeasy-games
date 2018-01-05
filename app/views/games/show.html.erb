@@ -1,0 +1,13 @@
+<div>
+  <h1><%= @game.title %></h1>
+  <h2>About the game:</h2>
+  <p><%= @game.teaser %></p>
+  <h2>What's Included: </h2>
+  <p><%= @game.included %></p>
+  <h2>What's Not Included: </h2>
+  <p><%= @game.not_included %></p>
+  <h2>Difficulty Level: </h2>
+  <p><%= @game.difficulty %></p>
+  <h2>Price: </h2>
+  <p><%= number_to_currency(@game.price) %></p>
+</div>

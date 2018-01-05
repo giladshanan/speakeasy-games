@@ -39,7 +39,7 @@
         <%= link_to "Logout", destroy_user_session_path, method: "DELETE", class: "w3-bar-item w3-button w3-right" %>
       <% end %>
       <%= link_to "Home", root_path, class: "w3-bar-item w3-button w3-left" %>
-      <a href="#footer" class="w3-bar-item w3-button w3-padding">Contact</a>
+      <a href="#footer" class="w3-bar-item w3-button w3-padding">Contact Us</a>
     </nav>
 
     <!-- Top menu on small screens -->
@@ -73,29 +73,25 @@
 
       <!-- Footer -->
       <footer class="w3-padding-64 w3-light-grey w3-small w3-center" id="footer">
-        <div class="w3-row-padding">
-          <div class="w3-col s4">
-            <h4>Contact</h4>
-            <p>Questions? Go ahead.</p>
+        <div class="w3-row-padding w3-center">
+          <div class="w3-col">
+            <h4>Questions? Comments?  Suggestions?</h4>
             <form action="/action_page.php" target="_blank">
               <p><input class="w3-input w3-border" type="text" placeholder="Name" name="Name" required></p>
               <p><input class="w3-input w3-border" type="text" placeholder="Email" name="Email" required></p>
               <p><input class="w3-input w3-border" type="text" placeholder="Subject" name="Subject" required></p>
               <p><input class="w3-input w3-border" type="text" placeholder="Message" name="Message" required></p>
               <button type="submit" class="w3-button w3-block w3-black">Send</button>
+              <p>We want to hear from you!  Send us an email or find us on one of the social media channels below.</p>
+              <div class="w3-col">
+                <i class="fa fa-facebook-official w3-hover-opacity w3-large"></i>
+                <i class="fa fa-instagram w3-hover-opacity w3-large"></i>
+                <i class="fa fa-twitter w3-hover-opacity w3-large"></i>
+                <i class="fa fa-fw fa-envelope"></i> ex@mail.com
+              </div>
             </form>
           </div>
 
-          <div class="w3-col s4 w3-justify">
-            <h4>Email</h4>
-            <p><i class="fa fa-fw fa-envelope"></i> ex@mail.com</p>
-            <h4>We accept</h4>
-            <p><i class="fa fa-fw fa-credit-card"></i> Credit Card</p>
-            <br>
-            <i class="fa fa-facebook-official w3-hover-opacity w3-large"></i>
-            <i class="fa fa-instagram w3-hover-opacity w3-large"></i>
-            <i class="fa fa-twitter w3-hover-opacity w3-large"></i>
-          </div>
         </div>
       </footer>
 

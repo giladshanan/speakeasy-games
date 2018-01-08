@@ -3,53 +3,63 @@
 <div>
   <%= form_for @game, url: game_path, html: { multipart: true } do |form| %>
     <div>
-      <label>Title:</label>
+      <h2>Title:</h2>
       <%= form.text_area :title %>
     </div>
     <div>
-      <label>Teaser:</label>
+      <h2>Teaser:</h2>
       <%= form.text_area :teaser %>
     </div>
     <div>
-      <label>Included:</label>
+      <h2>Included:</h2>
       <%= form.text_area :included %>
     </div>
     <div>
-      <label>Not included:</label>
+      <h2>Not included:</h2>
       <%= form.text_area :not_included %>
     </div>
     <div>
-      <label>Moderator Difficulty:</label>
+      <h2>Moderator Difficulty:</h2>
       <%= form.select :difficulty, options_for_select([ "Easy", "Medium", "Difficult" ], @game.difficulty) %>
     </div>
     <div>
-      <label>Moderator Notes:</label>
+      <h2>Moderator Notes:</h2>
       <%= form.text_area :notes %>
     </div>
     <div>
-      <label>Price:</label>
+      <h2>Price (in cents):</h2>
       <%= form.text_field :price %>
     </div>
+    <% if @game.cover_photo %>
+      <h2>Change Cover Photo:</h2>
+      <div>
+        <%= image_tag(@game.cover_photo.img.url(:medium), id: @game.cover_photo.id) %>
+        <%= form.file_field :cover_photo %>
+      </div>
+    <% else %>
+      <h2>Add Cover Photo:</h2>
+      <div>
+        <%= form.file_field :cover_photo %>
+      </div>
+    <% end %>
     <div>
-      <label>Add Cover Photo:</label>
-      <%= form.file_field :cover_photo %>
-    </div>
-    <div>
-      <label>Add Photos:</label>
+      <h2>Add Photos:</h2>
       <%= form.file_field :images, multiple: true %>
+    </div>
+    <% if @game.photos.count > 0 %>
+      <div>
+        <h2>Delete Photos:</h2>
+        <% @game.photos.each do |photo| %>
+          <%= image_tag(photo.img.url(:medium), id: photo.id) %>
+          <%= link_to "Delete", photo_path(photo), method: "DELETE", :data => {:confirm => 'Are you sure you want to delete this photo?'} %>
+        <% end %>
+      </div>
+    <% end %>
+    <div>
       <%= form.submit %>
     </div>
   <% end %>
 </div>
-<% if @game.photos.count > 0 %>
-  <div>
-    <h2>Delete Photos:</h2>
-    <% @game.photos.each do |photo| %>
-      <%= image_tag(photo.img.url(:medium), id: photo.id) %>
-      <%= link_to "Delete", photo_path(photo), method: "DELETE", :data => {:confirm => 'Are you sure you want to delete this photo?'} %>
-    <% end %>
-  </div>
-<% end %>
 <div>
   <%= link_to "Back", game_path(@game), class: "w3-bar-item w3-button w3-left" %>
 </div>

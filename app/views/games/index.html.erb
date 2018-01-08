@@ -1,6 +1,6 @@
 <!-- Image header -->
 <div class="w3-display-container w3-container">
-  <%= image_tag "/assets/cowboy.jpg", alt:"Yippe Kayay!", style:"width:100%" %>
+  <%= image_tag "cowboy.jpg", alt:"Yippe Kayay!", style:"width:100%" %>
   <div class="w3-display-topleft w3-text-white" style="padding:24px 48px">
     <h1 class="w3-jumbo w3-hide-small">Welcome!</h1>
     <h1 class="w3-hide-large w3-hide-medium">Welcome!</h1>
@@ -25,7 +25,7 @@
         <% if game.cover_photo %>
           <%= image_tag(game.cover_photo.img.url(:medium), style:"width:100%") %>
         <% else %>
-          <%= image_tag "/assets/cowboy.jpg", alt:"Yippe Kayay!", style:"width:100%" %>
+          <%= image_tag "cowboy.jpg", alt:"Yippe Kayay!", style:"width:100%" %>
         <% end %>
         <p><%= link_to game.title, game_path(game) %><br><b><%= number_to_currency(game.price/100) %></b></p>
       </div>

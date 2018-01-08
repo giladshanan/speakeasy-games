@@ -19,12 +19,20 @@
       <%= form.text_area :not_included %>
     </div>
     <div>
-      <label>Difficulty:</label>
+      <label>Moderator Difficulty:</label>
       <%= form.select :difficulty, options_for_select([ "Easy", "Medium", "Difficult" ], @game.difficulty) %>
+    </div>
+    <div>
+      <label>Moderator Notes:</label>
+      <%= form.text_area :notes %>
     </div>
     <div>
       <label>Price:</label>
       <%= form.text_field :price %>
+    </div>
+    <div>
+      <label>Add Cover Photo:</label>
+      <%= form.file_field :cover_photo %>
     </div>
     <div>
       <label>Add Photos:</label>
@@ -33,13 +41,15 @@
     </div>
   <% end %>
 </div>
-<div>
-  <h2>Delete Photos:</h2>
-  <% @game.photos.each do |photo| %>
-    <%= image_tag(photo.img.url(:medium), id: photo.id) %>
-    <%= link_to "Delete", photo_path(photo), method: "DELETE", :data => {:confirm => 'Are you sure you want to delete this photo?'} %>
-  <% end %>
-</div>
+<% if @game.photos.count > 0 %>
+  <div>
+    <h2>Delete Photos:</h2>
+    <% @game.photos.each do |photo| %>
+      <%= image_tag(photo.img.url(:medium), id: photo.id) %>
+      <%= link_to "Delete", photo_path(photo), method: "DELETE", :data => {:confirm => 'Are you sure you want to delete this photo?'} %>
+    <% end %>
+  </div>
+<% end %>
 <div>
   <%= link_to "Back", game_path(@game), class: "w3-bar-item w3-button w3-left" %>
 </div>

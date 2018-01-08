@@ -7,8 +7,10 @@
   <p><%= @game.included %></p>
   <h2>What's Not Included: </h2>
   <p><%= @game.not_included %></p>
-  <h2>Difficulty Level: </h2>
+  <h2>Moderator Difficulty Level: </h2>
   <p><%= @game.difficulty %></p>
+  <h2>Moderator Notes: </h2>
+  <p><%= @game.notes %></p>
   <h2>Photos</h2>
   <% @game.photos.each do |photo| %>
     <%= image_tag(photo.img.url(:medium)) %>

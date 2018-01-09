@@ -1,3 +1,4 @@
+User.destroy_all
 Photo.destroy_all
 # Testimonial.destroy_all
 Game.destroy_all
@@ -21,3 +22,6 @@ lady = Game.create(
   notes: "Our Lady of Interplanetary Ascendance works best in a strange and immersive setting. Moderators should expect to do substantial redecorating. The moderators have roles in the game, as well, which ideally involve a small amount of memorization.",
   price: 2500
   )
+
+admin = CreateAdminService.new.call
+puts 'CREATED ADMIN USER: ' << admin.email

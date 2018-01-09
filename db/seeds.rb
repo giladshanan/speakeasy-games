@@ -1,5 +1,6 @@
 User.destroy_all
 Photo.destroy_all
+CoverPhoto.destroy_all
 # Testimonial.destroy_all
 Game.destroy_all
 

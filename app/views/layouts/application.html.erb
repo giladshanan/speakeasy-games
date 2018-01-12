@@ -33,9 +33,10 @@
       </div>
 
       <% if current_user %>
-        <% if @game %>
+        <% if current_user.admin? && @game %>
           <%= link_to "Edit", edit_game_path(@game), class: "w3-bar-item w3-button w3-left" %>
         <% end %>
+        <%= link_to "Manage Users", users_path, class: "w3-bar-item w3-button w3-left" %>
         <%= link_to "Logout", destroy_user_session_path, method: "DELETE", class: "w3-bar-item w3-button w3-right" %>
       <% else %>
         <%= link_to "Login", new_user_registration_path, class: "w3-bar-item w3-button" %>

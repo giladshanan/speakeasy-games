@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180109201742) do
+ActiveRecord::Schema.define(version: 20180112214833) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +39,15 @@ ActiveRecord::Schema.define(version: 20180109201742) do
     t.text "notes"
   end
 
+  create_table "orders", force: :cascade do |t|
+    t.integer "total"
+    t.boolean "complete"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_orders_on_user_id"
+  end
+
   create_table "photos", force: :cascade do |t|
     t.text "caption"
     t.string "url"
@@ -51,6 +60,17 @@ ActiveRecord::Schema.define(version: 20180109201742) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["game_id"], name: "index_photos_on_game_id"
+  end
+
+  create_table "purchased_games", force: :cascade do |t|
+    t.bigint "game_id"
+    t.bigint "order_id"
+    t.integer "subtotal"
+    t.integer "quantity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["game_id"], name: "index_purchased_games_on_game_id"
+    t.index ["order_id"], name: "index_purchased_games_on_order_id"
   end
 
   create_table "testimonials", force: :cascade do |t|
@@ -83,6 +103,9 @@ ActiveRecord::Schema.define(version: 20180109201742) do
   end
 
   add_foreign_key "cover_photos", "games"
+  add_foreign_key "orders", "users"
   add_foreign_key "photos", "games"
+  add_foreign_key "purchased_games", "games"
+  add_foreign_key "purchased_games", "orders"
   add_foreign_key "testimonials", "games"
 end

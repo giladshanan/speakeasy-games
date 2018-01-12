@@ -4,6 +4,7 @@ class GamesController < ApplicationController
 
   def index
     @games = Game.all
+    @order = Order.new
   end
 
   def show

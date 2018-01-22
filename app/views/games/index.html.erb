@@ -13,17 +13,25 @@
 </div>
 
 <!-- Product grid -->
-<div class="w3-row w3-grayscale">
+<div class="w3-row w3-grayscale", style="display: table-row">
   <% @games.each do | game | %>
-    <div class="w3-col l3 s6">
-      <div class="w3-container">
+    <div class="w3-col l3 s6", style="display: table-cell">
+      <div class="w3-container", style="height:300px">
         <% if game.cover_photo %>
           <%= image_tag(game.cover_photo.img.url(:medium), style:"width:100%") %>
         <% else %>
           <%= image_tag "cowboy.jpg", alt:"Yippe Kayay!", style:"width:100%" %>
         <% end %>
+        <div class="w3-center">
+          <br>
+          <%= form_tag(orders_path) do %>
+            <%= hidden_field_tag 'game_id', game.id %>
+            <div><%= submit_tag 'Add to Cart' %></div>
+          <% end %>
+        </div>
         <p><%= link_to game.title, game_path(game) %><br><b><%= number_to_currency(game.price/100) %></b></p>
       </div>
     </div>
   <% end %>
 </div>
+

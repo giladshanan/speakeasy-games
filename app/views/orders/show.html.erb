@@ -1,0 +1,8 @@
+<h1>Shopping Cart!</h1>
+<% @order.purchased_games.each do |purchased_game| %>
+  <p><%= purchased_game.game.title %></p>
+  <p><%= purchased_game.quantity %></p>
+  <p><%= number_to_currency(purchased_game.subtotal/100) %></p>
+<% end %>
+<p>Order Total: <%= number_to_currency(@order.total/100) %></p>
+<%= render :template => 'charges/new', locals: {order: @order} %>

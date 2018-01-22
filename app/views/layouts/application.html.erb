@@ -47,7 +47,7 @@
 
     <!-- Top menu on small screens -->
     <header class="w3-bar w3-top w3-hide-large w3-black w3-xlarge">
-      <div class="w3-bar-item w3-padding-24 w3-wide"><%= link_to "LOGO", root_path, class: "w3-button" %><h1><%= link_to "Speakeasy Games", root_path, class: "w3-button" %></h1></div>
+      <div class="w3-bar-item w3-padding-24 w3-wide"><h1><%= link_to "Speakeasy Games", root_path, class: "w3-button" %></h1></div>
       <p class="w3-right">
         <% if current_user && current_user.orders.where(complete: false).count > 0 %>
           <%= link_to "", order_path(current_user.orders.where(complete: false)[0]), class:"fa fa-shopping-cart w3-margin-right w3-button" %>
@@ -57,6 +57,7 @@
           <%= link_to "", new_user_session_path, class:"fa fa-shopping-cart w3-margin-right w3-button" %>
         <% end %>
       </p>
+      <%= link_to "LOGO", root_path, class: "w3-button w3-padding-24" %>
       <a href="javascript:void(0)" class="w3-bar-item w3-button w3-padding-24 w3-right" onclick="w3_open()"><i class="fa fa-bars"></i></a>
     </header>
 

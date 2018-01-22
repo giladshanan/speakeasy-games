@@ -4,7 +4,10 @@ class OrdersController < ApplicationController
   end
 
   def create
-    redirect_to new_user_session_path unless current_user
+    if !current_user
+      flash[:alert] = "Please log in to add items to your cart."
+      redirect_to new_user_session_path and return
+    end
     @game = Game.find(params[:game_id])
     @user = current_user
     @order = @user.orders.where(complete: false).last || Order.create(complete: false, user: @user)

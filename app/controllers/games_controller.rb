@@ -1,8 +1,11 @@
 class GamesController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
+  before_action :admin_only, except: [:index, :show]
 
   def index
     @games = Game.all
+    @user = current_user || User.new
+    # @order = @user.orders.where(complete: false) || Order.create(complete: false)
   end
 
   def show
@@ -36,6 +39,12 @@ class GamesController < ApplicationController
   end
 
   private
+
+  def admin_only
+    unless current_user.admin?
+      redirect_to root_path, :alert => "Access denied."
+    end
+  end
 
   def game_params
     params.require(:game).permit(:images, :title, :teaser, :included, :not_included, :difficulty, :price, :notes) #, :cover_photo)

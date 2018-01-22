@@ -6,7 +6,7 @@
       </div>
     <% end %>
     <label class="amount">
-      <span>Price: <%= number_to_currency(@game.price/100) %></span>
+      <span>Price: <%= number_to_currency(@order.total/100) %></span>
     </label>
   </article>
 
@@ -15,8 +15,8 @@
     data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
     data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
     data-name="Speakeasy Games"
-    data-description="<%= @game.title %>"
-    data-amount="<%= @game.price %>"
+    data-description="Speakeasy Games"
+    data-amount="<%= @order.total %>"
     data-zip-code="true"
     data-locale="auto"
     >

@@ -6,6 +6,6 @@ class UserMailer < ApplicationMailer
     @order = order
     @games = @order.games.pluck(:title)
     attachments['SilverGrass.zip'] = File.read('public/SilverGrass.zip')
-    mail(to: @user.email, subject: 'Welcome to My Awesome Site')
+    mail(to: @user.email, subject: 'Your Recent Order From Speakeasy Games!')
   end
 end

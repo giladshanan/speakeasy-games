@@ -30,7 +30,11 @@ lady = Game.create(
   not_included: "Most physical materials, including character props",
   difficulty: "Difficult",
   notes: "Our Lady of Interplanetary Ascendance works best in a strange and immersive setting. Moderators should expect to do substantial redecorating. The moderators have roles in the game, as well, which ideally involve a small amount of memorization.",
-  price: 100
+  price: 100,
+  player_min: 16,
+  player_max: 20,
+  play_time: 3,
+  prep_time: 3
 )
 
 visconte = Game.create(

@@ -1,0 +1,14 @@
+Welcome to Speakeasy Games!
+===============================================
+
+Thank you for your purchase.  Your game(s) are attached.  We hope you enjoy playing!  Please don't hesitate to contact us with any questions you may have as you get prepared to play.
+
+<% @order.purchased_games.each do |purchased_game| %>
+  <%= purchased_game.quantity %> X <%= purchased_game.game.title %>: <%= number_to_currency(purchased_game.subtotal/100) %>
+<% end %>
+Order Total: <%= number_to_currency(@order.total/100) %>
+
+Thanks again for your purchase and have a great day!
+
+Sincerely,
+The Speakeasy Team

@@ -1,1 +1,7 @@
-<h2>Thanks, you paid <strong><%= number_to_currency(@order.total/100) %></strong>!</h2>
+<h2>Thanks for your purchase, you paid <strong><%= number_to_currency(@order.total/100) %></strong>!</h2>
+
+<% @order.purchased_games.each do |purchased_game| %>
+  <p><%= purchased_game.quantity %> X <%= purchased_game.game.title %>: <%= number_to_currency(purchased_game.subtotal/100) %></p>
+  <p></p>
+<% end %>
+<p>Order Total: <%= number_to_currency(@order.total/100) %></p>

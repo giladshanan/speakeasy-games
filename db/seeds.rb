@@ -1,6 +1,6 @@
-# PurchasedGame.destroy_all
-# Order.destroy_all
-# User.destroy_all
+PurchasedGame.destroy_all
+Order.destroy_all
+User.destroy_all
 Photo.destroy_all
 CoverPhoto.destroy_all
 Game.destroy_all

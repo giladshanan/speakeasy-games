@@ -5,9 +5,6 @@
         <p><%= flash[:error] %></p>
       </div>
     <% end %>
-    <label class="amount">
-      <span>Price: <%= number_to_currency(@order.total/100) %></span>
-    </label>
   </article>
 
   <script
@@ -19,6 +16,7 @@
     data-amount="<%= @order.total %>"
     data-zip-code="true"
     data-locale="auto"
+    data-email="<%= @order.user.email %>"
     >
   </script>
 <% end %>

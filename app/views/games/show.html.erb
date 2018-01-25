@@ -1,5 +1,7 @@
 <div>
   <h1><%= @game.title %></h1>
+  <p>An Immersive Cocktail Party Game for <%= @game.player_min %> to <%= @game.player_max %> Players</p>
+  <p>Price: <%= number_to_currency(@game.price/100) %></p>
   <%= form_tag(orders_path) do %>
     <%= hidden_field_tag 'game_id', @game.id %>
     <div><%= submit_tag 'Add to Cart' %></div>
@@ -12,6 +14,10 @@
   <p><%= @game.not_included %></p>
   <h2>Moderator Difficulty Level: </h2>
   <p><%= @game.difficulty %></p>
+  <h2>Playing Time: </h2>
+  <p><%= @game.play_time %> hours</p>
+  <h2>Moderator Prep Time:</h2>
+  <p>wildly variable, but at least <%= @game.prep_time %> hours</p>
   <h2>Moderator Notes: </h2>
   <p><%= @game.notes %></p>
   <h2>Photos</h2>

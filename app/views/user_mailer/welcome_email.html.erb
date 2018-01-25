@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Welcome to Speakeasy Games!</h1>
+    <p>
+      Thank you for your purchase.  Your game(s) are attached.  We hope you enjoy playing!  Please don't hesitate yo contact us with any questions you may have as you get prepared to play.
+    </p>
+    <% @order.purchased_games.each do |purchased_game| %>
+      <p><%= purchased_game.quantity %> X <%= purchased_game.game.title %>: <%= number_to_currency(purchased_game.subtotal/100) %></p>
+      <p></p>
+    <% end %>
+    <p>Order Total: <%= number_to_currency(@order.total/100) %></p>
+    <p>Thanks again for your purchase and have a great day!</p>
+    <p>Sincerely,</p>
+    <p>The Speakeasy Team</p>
+  </body>
+</html>

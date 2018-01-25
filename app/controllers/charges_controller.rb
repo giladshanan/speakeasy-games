@@ -23,13 +23,13 @@ class ChargesController < ApplicationController
       :currency      => 'usd'
     )
 
-    # if charge.succeeded
-    @order.update(complete:true)
-
-    UserMailer.welcome_email(@user, @order).deliver_now
+    if charge["paid"] == true
+      @order.update(complete:true)
+      UserMailer.welcome_email(@user, @order).deliver_now
+    end
 
     rescue Stripe::CardError => e
-    flash[:error] = e.message
-    redirect_to new_charge_path
+      flash[:error] = e.message
+      redirect_to new_charge_path
   end
 end

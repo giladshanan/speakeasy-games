@@ -27,5 +27,17 @@ module Speakeasygames
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+
+    config.paperclip_defaults = {
+      storage: :s3,
+      preserve_files: true,
+      s3_credentials: {
+        bucket: ENV["AWS_S3_BUCKET"],
+        access_key_id: ENV["AWS_ACCESS_KEY_ID"],
+        secret_access_key: ENV["AWS_SECRET_ACCESS_KEY"],
+        s3_region: ENV["AWS_S3_REGION"],
+        s3_host_name: ENV["AWS_S3_HOSTNAME"]
+      }
+    }
   end
 end

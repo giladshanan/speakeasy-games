@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180126031926) do
+ActiveRecord::Schema.define(version: 20180126054447) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,10 @@ ActiveRecord::Schema.define(version: 20180126031926) do
     t.integer "player_max"
     t.integer "play_time"
     t.integer "prep_time"
+    t.string "packet_file_name"
+    t.string "packet_content_type"
+    t.integer "packet_file_size"
+    t.datetime "packet_updated_at"
   end
 
   create_table "orders", force: :cascade do |t|

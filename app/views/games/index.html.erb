@@ -25,12 +25,17 @@
         <% end %>
         <div class="w3-center">
           <br>
-          <%= form_tag(orders_path) do %>
-            <%= hidden_field_tag 'game_id', game.id %>
-            <div><%= submit_tag 'Add to Cart' %></div>
+          <% if game.packet.url != "nil" %>
+            <%= form_tag(orders_path) do %>
+              <%= hidden_field_tag 'game_id', game.id %>
+              <div><%= submit_tag 'Add to Cart' %></div>
+            <% end %>
+          <p><b><%= number_to_currency(game.price/100) %></b></p>
+          <% else %>
+            <p>COMING SOON!</p>
           <% end %>
+          <p><%= link_to game.title, game_path(game) %></p>
         </div>
-        <p><%= link_to game.title, game_path(game) %><br><b><%= number_to_currency(game.price/100) %></b></p>
       </div>
     </div>
   <% end %>

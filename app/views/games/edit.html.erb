@@ -55,6 +55,14 @@
         <% end %>
       </div>
     <% end %>
+    <h2>Moderator Packet:</h2>
+      <% if @game.packet.url != "nil" %>
+        <p><%=@game.packet%></p>
+        <%= link_to("Download", @game.packet.url) %>
+      <% end %>
+      <div>
+        <%= form.file_field :packet %>
+      </div>
     <div>
       <%= form.submit %>
     </div>

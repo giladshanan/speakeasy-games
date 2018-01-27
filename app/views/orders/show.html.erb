@@ -5,3 +5,5 @@
 <% end %>
 <p>Order Total: <%= number_to_currency(@order.total/100) %></p>
 <%= render :template => 'charges/new', locals: {order: @order} %>
+<br>
+<p>Speakeasy Games are built around <span class="w3-text-green">players</span> with incomplete knowledge and a <span class="w3-text-red">moderator</span> (or moderators) with full knowledge of the plot, players' goals, and mysteries of the universe.  <b class="w3-text-black">Only read the moderator packet if you are planning on being the moderator.</b></p>

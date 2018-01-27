@@ -88,6 +88,11 @@
       <div class="w3-container w3-text-grey" id="jeans">
         <p class="notice"><%= notice %></p>
         <p class="alert"><%= alert %></p>
+        <% if flash[:error].present? %>
+          <div id="error_explanation">
+            <p class="w3-text-red"><%= flash[:error] %></p>
+          </div>
+        <% end %>
         <%= yield %>
       </div>
 

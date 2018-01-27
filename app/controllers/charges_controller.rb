@@ -1,4 +1,8 @@
 class ChargesController < ApplicationController
+  def index
+    redirect_to root_path
+  end
+
   def new
   end
 
@@ -8,7 +12,7 @@ class ChargesController < ApplicationController
     @order = @user.orders.where(complete:false)[0]
 
     if !@order || @order.total < 1
-      flash[:error] = "Your cart is empty."
+      flash[:error] = "Your cart is empty.  Please add something to your cart and try again."
       redirect_to root_path and return
     end
 

@@ -6,7 +6,7 @@ class ChargesController < ApplicationController
     @games = Game.all
     @user = current_user
     @order = @user.orders.where(complete:false)[0]
-    @title_list = @order.games.pluck(:title)
+    @title_list = @order.games.pluck(:title).join(", ")
 
     # Amount in cents
     @amount = @order.total

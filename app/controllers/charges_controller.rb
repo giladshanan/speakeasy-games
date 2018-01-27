@@ -19,6 +19,7 @@ class ChargesController < ApplicationController
       :customer      => customer.id,
       :amount        => @amount,
       :description   => 'Speakeasy Games',
+      :statement_descriptor => @order.total_games,
       :receipt_email => customer.email,
       :currency      => 'usd'
     )

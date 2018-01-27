@@ -22,6 +22,7 @@ class GamesController < ApplicationController
     @games = Game.all
     @game = Game.find( params[:id] )
     @game.update( game_params )
+    @game.packet = params[:game][:packet] if params[:game][:packet]
     params[:game][:images].each { |image| @game.photos.create(img: image) } if params[:game][:images]
     if params[:game][:cover_photo]
       @game.cover_photo.destroy if @game.cover_photo
@@ -47,6 +48,6 @@ class GamesController < ApplicationController
   end
 
   def game_params
-    params.require(:game).permit(:images, :title, :teaser, :included, :not_included, :difficulty, :price, :notes) #, :cover_photo)
+    params.require(:game).permit(:images, :title, :teaser, :included, :not_included, :difficulty, :price, :notes, :packet)
   end
 end

@@ -23,6 +23,7 @@
   <h2>Moderator Prep Time:</h2>
   <p>wildly variable, but at least <%= @game.prep_time %> hours</p>
   <h2>Moderator Notes: </h2>
+  <p>Speakeasy Games are built around <span class="w3-text-green">players</span> with incomplete knowledge and a <span class="w3-text-red">moderator</span> (or moderators) with full knowledge of the plot, players' goals, and mysteries of the universe.  <b class="w3-text-black">Only read the moderator packet if you are planning on being the moderator.</b></p>
   <p><%= @game.notes %></p>
   <h2>Photos</h2>
   <% @game.photos.each do |photo| %>

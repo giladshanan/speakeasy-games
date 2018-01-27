@@ -26,7 +26,7 @@ class ChargesController < ApplicationController
 
     if charge["paid"] == true
       @order.update(complete:true)
-      UserMailer.welcome_email(@user, @order).deliver_now
+      UserMailer.welcome_email(@user, @order).deliver_later
     end
 
     rescue Stripe::CardError => e

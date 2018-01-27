@@ -35,8 +35,9 @@
       <% if current_user %>
         <% if current_user.admin? && @game %>
           <%= link_to "Edit", edit_game_path(@game), class: "w3-bar-item w3-button w3-left" %>
+        <% elsif current_user.admin? %>
+          <%= link_to "Manage Users", users_path, class: "w3-bar-item w3-button w3-left" %>
         <% end %>
-        <%= link_to "Manage Users", users_path, class: "w3-bar-item w3-button w3-left" %>
         <%= link_to "Logout", destroy_user_session_path, method: "DELETE", class: "w3-bar-item w3-button w3-right" %>
       <% else %>
         <%= link_to "Login", new_user_registration_path, class: "w3-bar-item w3-button" %>
@@ -93,6 +94,7 @@
       <!-- Footer -->
       <footer class="w3-padding-64 w3-light-grey w3-small w3-center" id="footer">
         <div class="w3-row-padding w3-center">
+          <h1>Contact Us!</h1>
           <div class="w3-col">
             <h4>Questions? Comments?  Suggestions?</h4>
             <p>We want to hear from you!  Send us an email or find us on one of the social media channels below.</p>

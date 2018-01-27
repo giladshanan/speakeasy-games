@@ -6,10 +6,10 @@
   <body>
     <h1>Welcome to Speakeasy Games!</h1>
     <p>
-      Thank you for your purchase.  Your game(s) are attached.  We hope you enjoy playing!  Please don't hesitate to contact us with any questions you may have as you get prepared to play.
+      Thank you for your purchase.  You can download the moderator materials by visiting the links below.  We hope you enjoy playing!  Please don't hesitate to contact us with any questions you may have as you get prepared to play.
     </p>
     <% @order.purchased_games.each do |purchased_game| %>
-      <p><%= purchased_game.quantity %> X <%= purchased_game.game.title %>: <%= number_to_currency(purchased_game.subtotal/100) %></p>
+      <p><%= purchased_game.quantity %> X <%= link_to(purchased_game.game.title, purchased_game.game.packet.url) %>: <%= number_to_currency(purchased_game.subtotal/100) %></p>
       <p></p>
     <% end %>
     <p>Order Total: <%= number_to_currency(@order.total/100) %></p>

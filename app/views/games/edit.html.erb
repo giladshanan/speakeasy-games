@@ -56,7 +56,7 @@
       </div>
     <% end %>
     <h2>Moderator Packet:</h2>
-      <% if @game.packet.url != "nil" %>
+      <% if @game.has_packet? %>
         <p><%=@game.packet%></p>
         <%= link_to("Download", @game.packet.url) %>
       <% end %>

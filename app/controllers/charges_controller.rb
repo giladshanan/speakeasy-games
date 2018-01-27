@@ -6,6 +6,7 @@ class ChargesController < ApplicationController
     @games = Game.all
     @user = current_user
     @order = @user.orders.where(complete:false)[0]
+    @title_list = @order.games.pluck(:title)
 
     # Amount in cents
     @amount = @order.total
@@ -19,6 +20,7 @@ class ChargesController < ApplicationController
       :customer      => customer.id,
       :amount        => @amount,
       :description   => 'Speakeasy Games',
+      :statement_descriptor => @title_list,
       :receipt_email => customer.email,
       :currency      => 'usd'
     )

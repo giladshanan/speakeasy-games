@@ -6,7 +6,7 @@ class OrdersController < ApplicationController
 
   def create
     if !current_user
-      flash[:alert] = "Please log in to add items to your cart."
+      flash[:error] = "Please log in to add items to your cart."
       redirect_to new_user_session_path and return
     end
     @game = Game.find(params[:game_id])

@@ -1,7 +1,7 @@
 <div>
   <h1><%= @game.title %></h1>
   <p>An Immersive Cocktail Party Game for <%= @game.player_min %> to <%= @game.player_max %> Players</p>
-  <% if @game.packet.url != "nil" %>
+  <% if @game.has_packet? %>
     <p>Price: <%= number_to_currency(@game.price/100) %></p>
     <%= form_tag(orders_path) do %>
       <%= hidden_field_tag 'game_id', @game.id %>

@@ -7,6 +7,11 @@ class ChargesController < ApplicationController
     @user = current_user
     @order = @user.orders.where(complete:false)[0]
 
+    if !@order || @order.total < 1
+      flash[:error] = "Your cart is empty."
+      redirect_to root_path and return
+    end
+
     # Amount in cents
     @amount = @order.total
 
@@ -33,4 +38,5 @@ class ChargesController < ApplicationController
       flash[:error] = e.message
       redirect_to new_charge_path
   end
+
 end

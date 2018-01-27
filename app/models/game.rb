@@ -8,6 +8,10 @@ class Game < ApplicationRecord
 
   before_post_process :skip_for_zip
 
+  def has_packet?
+     packet.url != "nil"
+  end
+
   def skip_for_zip
      ! %w(application/zip application/x-zip application/x-zip-compressed).include?(packet_content_type)
   end

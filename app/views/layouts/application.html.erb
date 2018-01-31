@@ -47,7 +47,7 @@
     </nav>
 
     <!-- Top menu on small screens -->
-    <header class="w3-bar w3-top w3-hide-large w3-black w3-xlarge">
+    <header class="w3-bar w3-hide-large w3-black w3-xlarge">
       <div class="w3-padding-24 w3-wide w3-center"><h1><%= link_to "Speakeasy", root_path, class: "w3-button" %><%= link_to "Games", root_path, class: "w3-button" %></h1></div>
       <p class="w3-right">
         <% if current_user && current_user.orders.where(complete: false).count > 0 %>
@@ -69,10 +69,10 @@
     <div class="w3-main" style="margin-left:250px">
 
       <!-- Push down content on small screens -->
-      <div class="w3-hide-large" style="margin-top:123px"></div>
+      <div class="w3-hide" style="margin-top:123px"></div>
 
       <!-- Top header -->
-      <header class="w3-container w3-xlarge w3-black">
+      <header class="w3-container w3-xlarge w3-black w3-hide-small w3-hide-medium">
         <h1 class="w3-left"><%= link_to "Speakeasy Games", root_path, class: "w3-button" %></h1>
         <p class="w3-right">
           <% if current_user && current_user.orders.where(complete: false).count > 0 %>

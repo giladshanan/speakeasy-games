@@ -3,23 +3,19 @@ class GamesController < ApplicationController
   before_action :admin_only, except: [:index, :show]
 
   def index
-    @games = Game.all
     @user = current_user || User.new
     # @order = @user.orders.where(complete: false) || Order.create(complete: false)
   end
 
   def show
-    @games = Game.all
     @game = Game.find(params[:id])
   end
 
   def edit
-    @games = Game.all
     @game = Game.find(params[:id])
   end
 
   def update
-    @games = Game.all
     @game = Game.find( params[:id] )
     @game.update( game_params )
     @game.packet = params[:game][:packet] if params[:game][:packet]
@@ -33,7 +29,6 @@ class GamesController < ApplicationController
   end
 
   def destroy
-    @games = Game.all
     @game = Game.find( params[:id] )
     @game.destroy
     redirect_to root_path

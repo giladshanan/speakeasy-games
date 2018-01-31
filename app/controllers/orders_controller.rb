@@ -1,4 +1,8 @@
 class OrdersController < ApplicationController
+  def index
+    @games = Game.all
+  end
+
   def show
     @games = Game.all
     @order = Order.find(params[:id])

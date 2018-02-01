@@ -25,8 +25,16 @@
   <h2>Moderator Notes: </h2>
   <p>Speakeasy Games are built around <span class="w3-text-green">players</span> with incomplete knowledge and a <span class="w3-text-red">moderator</span> (or moderators) with full knowledge of the plot, players' goals, and mysteries of the universe.  <b class="w3-text-black">Only read the moderator packet if you are planning on being the moderator.</b>  Moderator packets will be delivered by e-mail. When checking out, make sure you use an email address that the <b class="w3-text-black">moderator</b> has access to.</p>
   <p><%= @game.notes %></p>
-  <h2>Photos</h2>
-  <% @game.photos.each do |photo| %>
-    <%= image_tag(photo.img.url(:medium)) %>
+  <% if @game.photos.count > 0 %>
+    <h2>Photos</h2>
+    <% @game.photos.each do |photo| %>
+      <%= image_tag(photo.img.url(:medium)) %>
+    <% end %>
+  <% end %>
+  <% if @game.testimonials.count > 0 %>
+    <h2>Testimonials</h2>
+    <% @game.testimonials.each do |testimonial| %>
+      <p><%= testimonial.description %></p>
+    <% end %>
   <% end %>
 </div>

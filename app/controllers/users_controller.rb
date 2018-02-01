@@ -3,12 +3,10 @@ class UsersController < ApplicationController
   before_action :admin_only, :except => :show
 
   def index
-    @games = Game.all
     @users = User.all
   end
 
   def show
-    @games = Game.all
     @user = User.find(params[:id])
     unless current_user.admin?
       unless @user == current_user

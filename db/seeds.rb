@@ -90,4 +90,4 @@ this hot young tomato pointing a stinkin' derringer at me.
 I reached into my bag to hand over my piece, only the gun stayed in
 the bag. The bullets didn't."
 
-Testimonial.create (description: test, game: visconte)
+Testimonial.create(description: test, game: visconte)

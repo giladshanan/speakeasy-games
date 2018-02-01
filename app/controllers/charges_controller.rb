@@ -7,7 +7,6 @@ class ChargesController < ApplicationController
   end
 
   def create
-    @games = Game.all
     @user = current_user
     @order = @user.orders.where(complete:false)[0]
 

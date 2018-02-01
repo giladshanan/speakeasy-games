@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   before_action :set_games
 
   def set_games
-    @games = Game.all
+    @games = Game.order(:id)
   end
 
 end

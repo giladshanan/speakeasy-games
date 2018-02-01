@@ -22,10 +22,10 @@
     <nav class="w3-sidebar w3-bar-block w3-black w3-collapse w3-top" style="z-index:3;width:250px" id="mySidebar">
       <div class="w3-container w3-display-container w3-padding-16">
         <i onclick="w3_close()" class="fa fa-remove w3-hide-large w3-button w3-display-topright"></i>
-        <h3 class="w3-wide"><b><%= link_to "LOGO", root_path, class: "w3-button" %></b></h3>
+        <h3 class="w3-wide"><b><%= link_to "", root_path, class: "w3-button LOGO" %></b></h3>
       </div>
       <div class="w3-padding-64 w3-large w3-text-grey" style="font-weight:bold">
-        <%= link_to "How Does This Work?", orders_path, class: "w3-bar-item w3-button w3-text-red" %>
+        <%= link_to "How Does This Work?", orders_path, class: "w3-bar-item w3-button w3-text-cyan" %>
         <% if @games %>
           <% @games.each do | game | %>
             <%= link_to game.title, game_path(game), class: "w3-bar-item w3-button" %>
@@ -59,7 +59,7 @@
           <%= link_to "", new_user_session_path, class:"fa fa-shopping-cart w3-margin-right w3-button" %>
         <% end %>
       </p>
-      <%= link_to "LOGO", root_path, class: "w3-button w3-padding-24" %>
+      <%= link_to "", root_path, class: "w3-button w3-padding-24 LOGO" %>
       <a href="javascript:void(0)" class="w3-bar-item w3-button w3-padding-24 w3-right" onclick="w3_open()"><i class="fa fa-bars"></i></a>
     </header>
 

@@ -78,3 +78,14 @@ cuba_libre = Game.create(
   play_time: 3,
   prep_time: 3
 )
+
+test = "What is it about me dealing sidearms that makes everyone a hero? There
+I was, in the alley behind (what was the name of the speakeasy?), with
+this hot young tomato pointing a stinkin' derringer at me.
+
+\"Hand over the gun!\" she said.
+
+\"Sure thing, sweetie. You got me.\"
+
+I reached into my bag to hand over my piece, only the gun stayed in
+the bag. The bullets didn't.")

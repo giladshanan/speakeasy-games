@@ -1,0 +1,23 @@
+<h2>Edit Profile Information</h2>
+
+<p>Name: <%= @user.name if @user.name %></p>
+<p>Email: <%= @user.email if @user.email %></p>
+
+<%= form_for(@user, url: user_registration_path(@user), html: { method: :put }) do |f| %>
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.email_field :name, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Update" %>
+  </div>
+<% end %>
+
+<%= link_to "Change your password", edit_user_registration_path %>
+<%= link_to "Back", :back %>

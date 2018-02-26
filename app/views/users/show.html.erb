@@ -1,8 +1,23 @@
 <h3>My Account</h3>
-<p>Name: <%= @user.name if @user.name %></p>
-<p>Email: <%= @user.email if @user.email %></p>
-<%= link_to "Update My Account Information", edit_user_path(current_user) %>
-<br>
-<% if current_user.admin? %>
-  <%= link_to "Manage Users", users_path, class: "w3-grey w3-bar-item w3-button w3-left" %>
-<% end %>
+<div class="w3-center w3-card">
+  <p>Name: <%= @user.name if @user.name %></p>
+  <p>Email: <%= @user.email if @user.email %></p>
+  <% if current_user.admin? %>
+    <%= link_to "Manage Users", users_path, class: "w3-grey w3-center w3-button" %>
+  <% end %><br>
+  <%= link_to "Update My Account Information", edit_user_path(current_user) %>
+</div>
+<div>
+  <ul>
+  <% @orders.each do |order| %>
+    <div class="w3-card">
+      <p>Total amount: <%= number_to_currency(order.total/100) %></p>
+      <ul>
+        <% order.games.each do |game| %>
+          <p><%= link_to game.title, game_path(game) %></p>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  </ul>
+</div>

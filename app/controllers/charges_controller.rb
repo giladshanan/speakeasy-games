@@ -33,7 +33,7 @@ class ChargesController < ApplicationController
     )
 
     if charge["paid"] == true
-      @order.update(complete:true)
+      @order.update(complete: true, purchased_at: Time.current)
       UserMailer.welcome_email(@user, @order).deliver_later
     end
 

@@ -4,7 +4,6 @@ class GamesController < ApplicationController
 
   def index
     @user = current_user || User.new
-    # @order = @user.orders.where(complete: false) || Order.create(complete: false)
   end
 
   def show

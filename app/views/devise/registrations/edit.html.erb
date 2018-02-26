@@ -1,8 +1,9 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<h2>Edit Password</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= devise_error_messages! %>
 
+<!-- It would be ideal to move the email editing to a seperate page  -->
   <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true %>
@@ -13,7 +14,7 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+    <%= f.label :password %> <i>(To change your password, enter a new one here. If you don't want to change your password, simply leave this field blank.)</i><br />
     <%= f.password_field :password, autocomplete: "off" %>
     <% if @minimum_password_length %>
       <br />
@@ -27,7 +28,7 @@
   </div>
 
   <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+    <%= f.label :current_password %> <i>(If you make any changes to your account, you'll need to enter your current password here to confirm.)</i><br />
     <%= f.password_field :current_password, autocomplete: "off" %>
   </div>
 

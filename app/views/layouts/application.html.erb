@@ -34,10 +34,9 @@
       </div>
 
       <% if current_user %>
+        <%= link_to "My Account", user_path(current_user), class: "w3-bar-item w3-button w3-left"%>
         <% if current_user.admin? && @game %>
           <%= link_to "Edit", edit_game_path(@game), class: "w3-bar-item w3-button w3-left" %>
-        <% elsif current_user.admin? %>
-          <%= link_to "Manage Users", users_path, class: "w3-bar-item w3-button w3-left" %>
         <% end %>
         <%= link_to "Logout", destroy_user_session_path, method: "DELETE", class: "w3-bar-item w3-button w3-right" %>
       <% else %>
@@ -77,11 +76,11 @@
         <h1 class="w3-left"><%= link_to "Speakeasy Games", root_path, class: "w3-button" %></h1>
         <p class="w3-right">
           <% if current_user && current_user.orders.where(complete: false).count > 0 %>
-            <%= link_to "", order_path(current_user.orders.where(complete: false)[0]), class:"fa fa-shopping-cart w3-margin-right" %>
+            <%= link_to "", order_path(current_user.orders.where(complete: false)[0]), class:"fa fa-shopping-cart w3-margin-right w3-button" %>
           <% elsif current_user %>
-            <%= link_to "", "", class:"fa fa-shopping-cart w3-margin-right", style:"text-decoration: none", onclick: "alert('Your cart is empty.')" %>
+            <%= link_to "", "", class:"fa fa-shopping-cart w3-margin-right w3-button", style:"text-decoration: none", onclick: "alert('Your cart is empty.')" %>
           <% else %>
-            <%= link_to "", new_user_session_path, class:"fa fa-shopping-cart w3-margin-right", style:"text-decoration: none", onclick: "alert('Please log in to add items to your cart.')" %>
+            <%= link_to "", new_user_session_path, class:"fa fa-shopping-cart w3-margin-right w3-button", style:"text-decoration: none", onclick: "alert('Please log in to add items to your cart.')" %>
           <% end %>
         </p>
       </header>

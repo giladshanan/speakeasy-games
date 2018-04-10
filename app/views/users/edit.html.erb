@@ -1,12 +1,17 @@
 <h3>Edit My Account Information</h3>
 
-<p>Name: <%= @user.name if @user.name %></p>
+<p>Name: <%= @user.full_name if @user.first_name %></p>
 <p>Email: <%= @user.email if @user.email %></p>
 
 <%= form_for(@user, url: user_registration_path(@user), html: { method: :put }) do |f| %>
   <div class="field">
-    <%= f.label :name %><br />
-    <%= f.email_field :name, autofocus: true %>
+    <%= f.label :first_name %><br />
+    <%= f.text_field :first_name, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :last_name %><br />
+    <%= f.text_field :last_name %>
   </div>
 
   <div class="field">

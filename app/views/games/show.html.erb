@@ -16,14 +16,14 @@
   <p><%= @game.included %></p>
   <h2>What's Not Included: </h2>
   <p><%= @game.not_included %></p>
-  <h2>Moderator Difficulty Level: </h2>
+  <h2>Host Difficulty Level: </h2>
   <p><%= @game.difficulty %></p>
   <h2>Playing Time: </h2>
   <p><%= @game.play_time %> hours</p>
-  <h2>Moderator Prep Time:</h2>
+  <h2>Host Prep Time:</h2>
   <p>wildly variable, but at least <%= @game.prep_time %> hours</p>
-  <h2>Moderator Notes: </h2>
-  <p>Speakeasy Games are built around <span class="w3-text-green">players</span> with incomplete knowledge and a <span class="w3-text-red">moderator</span> (or moderators) with full knowledge of the plot, players' goals, and mysteries of the universe.  <b class="w3-text-black">Only read the moderator packet if you are planning on being the moderator.</b>  Moderator packets will be delivered by e-mail. When checking out, make sure you use an email address that the <b class="w3-text-black">moderator</b> has access to.</p>
+  <h2>Host Notes: </h2>
+  <p>Speakeasy Games are built around <span class="w3-text-green">players</span> with incomplete knowledge and a <span class="w3-text-red">host</span> (or hosts) with full knowledge of the plot, players' goals, and mysteries of the universe.  <b class="w3-text-black">Only read the host packet if you are planning on being the host.</b>  Host packets will be delivered by e-mail. When checking out, make sure you use an email address that the <b class="w3-text-black">host</b> has access to.</p>
   <p><%= @game.notes %></p>
   <% if @game.photos.count > 0 %>
     <h2>Photos</h2>

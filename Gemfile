@@ -36,8 +36,8 @@ gem 'jbuilder', '~> 2.5'
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 
 gem "paperclip"
-gem 'aws-sdk', '~> 2.3.0'
-
+gem 'aws-sdk'#, '~> 2.3.0'
+gem 'aws-sdk-s3'
 gem 'devise'
 
 gem 'rails_12factor', group: :production

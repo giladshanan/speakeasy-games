@@ -19,11 +19,11 @@
       <%= form.text_area :not_included %>
     </div>
     <div>
-      <h2>Moderator Difficulty:</h2>
+      <h2>Host Difficulty:</h2>
       <%= form.select :difficulty, options_for_select([ "Easy", "Medium", "Difficult", "Very Difficult" ], @game.difficulty) %>
     </div>
     <div>
-      <h2>Moderator Notes:</h2>
+      <h2>Host Notes:</h2>
       <%= form.text_area :notes %>
     </div>
     <div>
@@ -55,7 +55,7 @@
         <% end %>
       </div>
     <% end %>
-    <h2>Moderator Packet:</h2>
+    <h2>Host Packet:</h2>
       <% if @game.has_packet? %>
         <p><%=@game.packet%></p>
         <%= link_to("Download", @game.packet.url) %>

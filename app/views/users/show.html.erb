@@ -1,6 +1,6 @@
 <h3>My Account</h3>
 <div class="w3-center w3-card">
-  <p>Name: <%= @user.name if @user.name %></p>
+  <p>Name: <%= @user.full_name if @user.first_name %></p>
   <p>Email: <%= @user.email if @user.email %></p>
   <% if current_user.admin? %>
     <%= link_to "Manage Users", users_path, class: "w3-grey w3-center w3-button" %>
@@ -12,7 +12,7 @@
   <% @orders.each do |order| %>
     <div class="w3-card">
       <p>Total amount: <%= number_to_currency(order.total/100) %></p>
-      <p>Purchased on <%= order.purchased_at.to_formatted_s(:month_day_comma_year) + " at " + order.purchased_at.to_formatted_s(:time) if order.purchased_at %></p>
+      <p>Purchased on <%= order.purchased_at.to_formatted_s(:month_day_comma_year) + " at " + order.purchased_at.to_formatted_s(:time_am_pm) if order.purchased_at %></p>
       <ul>
         <% order.games.each do |game| %>
           <p><%= link_to game.title, game_path(game) %></p>

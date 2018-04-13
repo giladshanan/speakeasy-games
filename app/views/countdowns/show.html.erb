@@ -2,26 +2,30 @@
   <%= stylesheet_link_tag "styles", media: "all" %>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
-<div id="clock-container">
-  <h1 id="#clock-title">Countdown Clock</h1>
-  <div id="clockdiv">
-    <div>
-      <span class="hours"></span>
-      <div class="smalltext">Hours</div>
-    </div>
-    <div>
-      <span class="minutes"></span>
-      <div class="smalltext">Minutes</div>
-    </div>
-    <div>
-      <span class="seconds"></span>
-      <div class="smalltext">Seconds</div>
+
+<body>
+  <p class="alert" style="text-align:center; color:red;"><%= alert %></p>
+  <div id="clock-container">
+    <h1 id="#clock-title">Countdown Clock</h1>
+    <div id="clockdiv">
+      <div>
+        <span class="hours"></span>
+        <div class="smalltext">Hours</div>
+      </div>
+      <div>
+        <span class="minutes"></span>
+        <div class="smalltext">Minutes</div>
+      </div>
+      <div>
+        <span class="seconds"></span>
+        <div class="smalltext">Seconds</div>
+      </div>
     </div>
   </div>
-</div>
 
-<%= content_tag :div, class: "temp_information", data: {countdown: @countdown} do %>
-<% end %>
+  <%= content_tag :div, class: "temp_information", data: {countdown: @countdown} do %>
+  <% end %>
+</body>
 
 <script>
   var countdown = $('.temp_information').data('countdown')

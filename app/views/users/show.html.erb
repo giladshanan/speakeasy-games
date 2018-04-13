@@ -4,6 +4,9 @@
   <p>Email: <%= @user.email if @user.email %></p>
   <% if current_user.admin? %>
     <%= link_to "Manage Users", users_path, class: "w3-grey w3-center w3-button" %>
+    <p></p>
+    <!-- temporary location for the countdown button -->
+    <%= button_to("Begin Countdown", countdowns_path, params: {purchased_game_id: 1}, class: "w3-grey w3-center w3-button" ) %>
   <% end %><br>
   <%= link_to "Update My Account Information", edit_user_path(current_user) %>
 </div>
@@ -16,6 +19,7 @@
       <ul>
         <% order.games.each do |game| %>
           <p><%= link_to game.title, game_path(game) %></p>
+          <!-- countdown button will go here -->
         <% end %>
       </ul>
     </div>

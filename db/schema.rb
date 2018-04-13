@@ -10,10 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180227040112) do
+ActiveRecord::Schema.define(version: 20180413213513) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "countdowns", force: :cascade do |t|
+    t.integer "total_time"
+    t.integer "initial_lockout"
+    t.integer "lockout_increment"
+    t.integer "guesses"
+    t.string "code"
+    t.bigint "purchased_game_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "seconds"
+    t.index ["purchased_game_id"], name: "index_countdowns_on_purchased_game_id"
+  end
 
   create_table "cover_photos", force: :cascade do |t|
     t.bigint "game_id"
@@ -118,6 +131,7 @@ ActiveRecord::Schema.define(version: 20180227040112) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "countdowns", "purchased_games"
   add_foreign_key "cover_photos", "games"
   add_foreign_key "orders", "users"
   add_foreign_key "photos", "games"

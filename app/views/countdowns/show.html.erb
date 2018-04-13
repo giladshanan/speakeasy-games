@@ -1,60 +1,71 @@
 <head>
   <%= stylesheet_link_tag "styles", media: "all" %>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
-<div id="clock-container">
-  <h1 id="#clock-title">Countdown Clock</h1>
-  <div id="clockdiv">
-    <div>
-      <span class="hours"></span>
-      <div class="smalltext">Hours</div>
-    </div>
-    <div>
-      <span class="minutes"></span>
-      <div class="smalltext">Minutes</div>
-    </div>
-    <div>
-      <span class="seconds"></span>
-      <div class="smalltext">Seconds</div>
+
+<body>
+  <p class="alert" style="text-align:center; color:red;"><%= alert %></p>
+  <div id="clock-container">
+    <h1 id="#clock-title">Countdown Clock</h1>
+    <div id="clockdiv">
+      <div>
+        <span class="hours"></span>
+        <div class="smalltext">Hours</div>
+      </div>
+      <div>
+        <span class="minutes"></span>
+        <div class="smalltext">Minutes</div>
+      </div>
+      <div>
+        <span class="seconds"></span>
+        <div class="smalltext">Seconds</div>
+      </div>
     </div>
   </div>
-</div>
+
+  <%= content_tag :div, class: "temp_information", data: {countdown: @countdown} do %>
+  <% end %>
+</body>
 
 <script>
+  var countdown = $('.temp_information').data('countdown')
+
   function getTimeRemaining(endtime) {
-  var t = Date.parse(endtime) - Date.parse(new Date());
-  var seconds = Math.floor((t / 1000) % 60);
-  var minutes = Math.floor((t / 1000 / 60) % 60);
-  var hours = Math.floor((t / (1000 * 60 * 60)) % 24);
-  return {
-    'total': t,
-    'hours': hours,
-    'minutes': minutes,
-    'seconds': seconds
-  };
-}
-
-function initializeClock(id, endtime) {
-  var clock = document.getElementById(id);
-  var hoursSpan = clock.querySelector('.hours');
-  var minutesSpan = clock.querySelector('.minutes');
-  var secondsSpan = clock.querySelector('.seconds');
-
-  function updateClock() {
-    var t = getTimeRemaining(endtime);
-
-    hoursSpan.innerHTML = ('0' + t.hours).slice(-2);
-    minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
-    secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
-
-    if (t.total <= 0) {
-      clearInterval(timeinterval);
-    }
+    var t = Date.parse(endtime) - Date.parse(new Date());
+    var seconds = Math.floor((t / 1000) % 60);
+    var minutes = Math.floor((t / 1000 / 60) % 60);
+    var hours = Math.floor((t / (1000 * 60 * 60)) % 24);
+    return {
+      'total': t,
+      'hours': hours,
+      'minutes': minutes,
+      'seconds': seconds
+    };
   }
 
-  updateClock();
-  var timeinterval = setInterval(updateClock, 1000);
-}
+  function initializeClock(id, endtime) {
+    var clock = document.getElementById(id);
+    var hoursSpan = clock.querySelector('.hours');
+    var minutesSpan = clock.querySelector('.minutes');
+    var secondsSpan = clock.querySelector('.seconds');
 
-var deadline = new Date(Date.parse(new Date()) + 24 * 60 * 60 * 1000);
-initializeClock('clockdiv', deadline);
+    function updateClock() {
+      var t = getTimeRemaining(endtime);
+      hoursSpan.innerHTML = ('0' + t.hours).slice(-2);
+      minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
+      secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
+
+      if (t.total <= 0) {
+        clearInterval(timeinterval);
+      }
+    }
+
+    updateClock();
+    var timeinterval = setInterval(updateClock, 1000);
+  }
+
+  var deadline = new Date(Date.parse(new Date()) + countdown.seconds * 1000)
+
+  initializeClock('clockdiv', deadline);
+
 </script>

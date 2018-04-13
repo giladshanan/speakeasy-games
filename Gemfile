@@ -28,7 +28,7 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
-gem 'jquery-countdown-rails'
+# gem 'jquery-countdown-rails'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -36,8 +36,8 @@ gem 'jquery-countdown-rails'
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 
 gem "paperclip"
-gem 'aws-sdk', '~> 2.3.0'
-
+gem 'aws-sdk'#, '~> 2.3.0'
+gem 'aws-sdk-s3'
 gem 'devise'
 
 gem 'rails_12factor', group: :production

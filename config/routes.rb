@@ -6,5 +6,5 @@ Rails.application.routes.draw do
   resources :photos, only: [:destroy]
   resources :charges
   resources :orders
-  resources :countdowns, only: [:show]
+  resources :countdowns, only: [:new, :create, :show]
 end

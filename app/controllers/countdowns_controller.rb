@@ -25,4 +25,11 @@ class CountdownsController < ApplicationController
     @countdown.save
     render layout: false
   end
+
+  def search
+    @countdown = Countdown.find(params[:id])
+    @alert = "Correct!" if params[:q] == @countdown.code
+    redirect_to countdown_path(@countdown), alert: @alert
+
+  end
 end

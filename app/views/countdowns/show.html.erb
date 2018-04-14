@@ -1,5 +1,10 @@
 <head>
+  <%= csrf_meta_tags %>
   <%= stylesheet_link_tag "styles", media: "all" %>
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 
@@ -23,9 +28,50 @@
     </div>
   </div>
 
+  <div style="text-align:center;"">
+    <p></p>
+    <%= form_tag("#{@countdown.id}/search", method: "get") do %>
+      <%= label_tag(:q, "Please enter the code:") %>
+      <%= text_field_tag(:q, nil, placeholder: "-" * @countdown.code.length) %>
+      <%= submit_tag "Submit", style: "display:none;" %>
+    <% end %>
+  </div>
+
   <%= content_tag :div, class: "temp_information", data: {countdown: @countdown} do %>
   <% end %>
 </body>
+
+<script>
+  $('#q').bind('input propertychange', function() {
+    var input = $("#q").val().replace(/-/g, "");
+    var position = input.length
+    var times = countdown.code.length - position;
+    var new_input_text = input
+    for(var i=0; i < times; i++){
+      new_input_text += "-";
+    }
+    $("#q").val(new_input_text);
+    if (times == 0 ) {
+      $( "form" ).trigger( "submit" );
+    }
+    $("#q").focus().setCursorPosition(position);
+  });
+
+  $.fn.setCursorPosition = function (pos) {
+      this.each(function (index, elem) {
+          if (elem.setSelectionRange) {
+              elem.setSelectionRange(pos, pos);
+          } else if (elem.createTextRange) {
+              var range = elem.createTextRange();
+              range.collapse(true);
+              range.moveEnd('character', pos);
+              range.moveStart('character', pos);
+              range.select();
+          }
+      });
+      return this;
+  };
+</script>
 
 <script>
   var countdown = $('.temp_information').data('countdown')

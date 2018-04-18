@@ -42,7 +42,7 @@ class CountdownsController < ApplicationController
     if @countdown.time_remaining < 120 && @countdown.time_remaining > 0
       flash.now[:alert] = 'Two minutes left!'
     elsif @countdown.lockout_remaining > 0 && @countdown.time_remaining > 0
-      flash.now[:alert] = "Incorrect code! Lockdown sequence initiated..."
+      flash.now[:alert] = "Incorrect Code. System Locked."
     end
     render layout: false
   end
@@ -58,7 +58,7 @@ class CountdownsController < ApplicationController
       @countdown.lockout_seconds *= @countdown.lockout_increment
       @countdown.lockout_started_at = Time.current
       @countdown.save
-      @alert = "Incorrect code! Lockdown sequence initiated..."
+      @alert = "Incorrect Code. System Locked."
     end
     redirect_to countdown_path(@countdown), alert: @alert
   end

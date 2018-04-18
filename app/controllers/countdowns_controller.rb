@@ -13,7 +13,7 @@ class CountdownsController < ApplicationController
         lockout_seconds: 60, # half the initial lockout time, in seconds
         lockout_increment: 2, # coefficient for incrementing
         guesses: 0,
-        code: "testingthecode",
+        code: "10762801815",
         )
     end
     redirect_to countdown_path(@countdown), alert: @alert

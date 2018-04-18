@@ -10,14 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180413213513) do
+ActiveRecord::Schema.define(version: 20180416050300) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "countdowns", force: :cascade do |t|
-    t.integer "total_time"
-    t.integer "initial_lockout"
+    t.integer "lockout_seconds"
     t.integer "lockout_increment"
     t.integer "guesses"
     t.string "code"
@@ -25,6 +24,8 @@ ActiveRecord::Schema.define(version: 20180413213513) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "seconds"
+    t.float "total_time"
+    t.datetime "lockout_started_at"
     t.index ["purchased_game_id"], name: "index_countdowns_on_purchased_game_id"
   end
 

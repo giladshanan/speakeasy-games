@@ -28,7 +28,7 @@
     </div>
   </div>
 
-  <div style="text-align:center;"">
+  <div id="text-input" style="text-align:center;">
     <p></p>
     <%= form_tag("#{@countdown.id}/search", method: "get") do %>
       <%= label_tag(:q, "Please enter the code:") %>
@@ -37,8 +37,9 @@
     <% end %>
   </div>
 
-  <%= content_tag :div, class: "temp_information", data: {countdown: @countdown} do %>
+  <%= content_tag :div, class: "temp_information", data: {countdown: @countdown, lockout_remaining: @countdown.lockout_remaining, time_remaining: @countdown.time_remaining} do %>
   <% end %>
+
 </body>
 
 <script>
@@ -74,8 +75,6 @@
 </script>
 
 <script>
-  var countdown = $('.temp_information').data('countdown')
-
   function getTimeRemaining(endtime) {
     var t = Date.parse(endtime) - Date.parse(new Date());
     var seconds = Math.floor((t / 1000) % 60);
@@ -102,7 +101,19 @@
       secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
 
       if (t.total <= 0) {
+        hoursSpan.innerHTML = ('0').slice(-2);
+        minutesSpan.innerHTML = ('0').slice(-2);
+        secondsSpan.innerHTML = ('0').slice(-2);
         clearInterval(timeinterval);
+        if (time_remaining > 0) {
+          // console.log("timer")
+          // this triggers a refresh so that the page will switch from lockout back to regular timer,
+          // but casues the page to refresh if the code is guessed before time is up
+          window.location.reload(true)
+        }
+      }
+      if (t.total == 120000) {
+        window.location.reload(true)
       }
     }
 
@@ -110,8 +121,16 @@
     var timeinterval = setInterval(updateClock, 1000);
   }
 
+  var countdown = $('.temp_information').data('countdown')
+  var lockout_remaining = $('.temp_information').data('lockoutRemaining')
+  var time_remaining = $('.temp_information').data('timeRemaining')
   var deadline = new Date(Date.parse(new Date()) + countdown.seconds * 1000)
-
   initializeClock('clockdiv', deadline);
 
+  if (lockout_remaining > 0 && time_remaining > 120) {
+    $('#text-input').hide();
+    $('body').attr('style', 'background:yellow')
+    $('#clockdiv').children().attr('style', 'background:red')
+  }
 </script>
+

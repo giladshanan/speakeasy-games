@@ -28,10 +28,10 @@ class CountdownsController < ApplicationController
     # ask John:
     # flashing 2 min warning
     # different color?
-    # grace period?
-    if @countdown.seconds != 0 && @countdown.lockout_remaining > 0 && @countdown.time_remaining > 120
-      if @countdown.lockout_remaining > @countdown.time_remaining - 120
-        @countdown.seconds = @countdown.time_remaining - 120
+    grace_period = 120 # seconds
+    if @countdown.seconds != 0 && @countdown.lockout_remaining > 0 && @countdown.time_remaining > grace_period
+      if @countdown.lockout_remaining > @countdown.time_remaining - grace_period
+        @countdown.seconds = @countdown.time_remaining - grace_period
       else
         @countdown.seconds = @countdown.lockout_remaining
       end
@@ -39,8 +39,8 @@ class CountdownsController < ApplicationController
       @countdown.seconds = @countdown.time_remaining
     end
     @countdown.save
-    if @countdown.time_remaining < 120 && @countdown.time_remaining > 0
-      flash.now[:alert] = 'Two minutes left!'
+    if @countdown.time_remaining < grace_period && @countdown.time_remaining > 0
+      flash.now[:alert] = "Time is almost up!"
     elsif @countdown.lockout_remaining > 0 && @countdown.time_remaining > 0
       flash.now[:alert] = "Incorrect Code. System Locked."
     end

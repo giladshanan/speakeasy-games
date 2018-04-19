@@ -31,7 +31,7 @@
 
   <div class="center">
     <div class="clock"></div>
-    <p class="alert" style="text-align:center; font-size:x-large"><%= alert %></p>
+    <p class="alert" style="text-align:center; font-size:large"><%= alert %></p>
   </div>
 
   <div id="text-input">
@@ -136,6 +136,7 @@
   if (lockout_remaining > 0 && time_remaining > 120) {
     $('#text-input').hide();
     $('body').attr('style', 'background:red')
+    $('.alert').attr('style', 'text-align:center; font-size:x-large')
     $('#clockdiv').children().attr('style', 'background:red')
   }
 </script>

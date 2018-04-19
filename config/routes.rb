@@ -6,6 +6,6 @@ Rails.application.routes.draw do
   resources :photos, only: [:destroy]
   resources :charges
   resources :orders
-  resources :countdowns, only: [:create, :show]
+  resources :countdowns, only: [:create, :show, :index]
   get 'countdowns/:id/search' => 'countdowns#search'
 end

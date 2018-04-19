@@ -53,13 +53,18 @@ class CountdownsController < ApplicationController
       @countdown.seconds = 0
       @countdown.save
       @alert = "Correct!"
+      redirect_to countdowns_path, alert: @alert
     else
       @countdown.guesses += 1
       @countdown.lockout_seconds *= @countdown.lockout_increment
       @countdown.lockout_started_at = Time.current
       @countdown.save
       @alert = "Incorrect Code. System Locked."
+      redirect_to countdown_path(@countdown), alert: @alert
     end
-    redirect_to countdown_path(@countdown), alert: @alert
+  end
+
+  def index
+    render layout: false
   end
 end

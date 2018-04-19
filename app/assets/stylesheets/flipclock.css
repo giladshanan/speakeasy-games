@@ -1,11 +1,11 @@
 /* Get the bourbon mixin from http://bourbon.io */
 /* Reset */
 .center {
-   position: absolute;
-   top: 15em;
-   left: 50%;
-   margin-right: -50%;
-   transform: translate(-50%, -0%)
+  position: absolute;
+  top: 15em;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -0%)
 }
 
 #text-input {
@@ -14,6 +14,15 @@
   left: 50%;
   margin-right: -50%;
   transform: translate(-50%, -0%)
+}
+
+#boom {
+  display: none;
+  position: absolute;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -0%);
+  z-index: -1;
 }
 
 .flip-clock-wrapper * {

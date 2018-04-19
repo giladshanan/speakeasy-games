@@ -46,6 +46,8 @@
   <%= content_tag :div, class: "temp_information", data: {countdown: @countdown, lockout_remaining: @countdown.lockout_remaining, time_remaining: @countdown.time_remaining} do %>
   <% end %>
 
+  <iframe src="https://giphy.com/embed/HhTXt43pk1I1W" width="480" height="305" frameBorder="0" id="boom"></iframe>
+
 </body>
 
 <script>
@@ -132,6 +134,16 @@
   var time_remaining = $('.temp_information').data('timeRemaining')
   var deadline = new Date(Date.parse(new Date()) + countdown.seconds * 1000)
   initializeClock('clockdiv', deadline);
+
+  if (time_remaining <= 0) {
+    console.log("Time's up!");
+    $('#text-input').hide();
+    $('#boom').show();
+    $('.alert').attr('style', 'text-align:center; font-size:x-large')
+    $('.alert').html("Launch Initiated")
+    $('body').attr('style', 'background:red')
+
+  }
 
   if (lockout_remaining > 0 && time_remaining > 120) {
     $('#text-input').hide();

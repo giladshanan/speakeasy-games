@@ -1,16 +1,17 @@
 <head>
   <%= csrf_meta_tags %>
   <%= stylesheet_link_tag "styles", media: "all" %>
+  <%= stylesheet_link_tag "flipclock" %>
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <%= javascript_include_tag "flipclock" %>
 </head>
 
 <body>
-  <p class="alert" style="text-align:center; color:red;"><%= alert %></p>
-  <div id="clock-container">
+  <div id="clock-container" style="display:none">
     <h1 id="#clock-title">Countdown Clock</h1>
     <div id="clockdiv">
       <div>
@@ -28,7 +29,12 @@
     </div>
   </div>
 
-  <div id="text-input" style="text-align:center;">
+  <div class="center">
+    <div class="clock"></div>
+    <p class="alert" style="text-align:center; font-size:x-large"><%= alert %></p>
+  </div>
+
+  <div id="text-input">
     <p></p>
     <%= form_tag("#{@countdown.id}/search", method: "get") do %>
       <%= label_tag(:q, "Please enter the code:") %>
@@ -129,8 +135,13 @@
 
   if (lockout_remaining > 0 && time_remaining > 120) {
     $('#text-input').hide();
-    $('body').attr('style', 'background:yellow')
+    $('body').attr('style', 'background:red')
     $('#clockdiv').children().attr('style', 'background:red')
   }
 </script>
 
+<script type="text/javascript">
+  var clock = $('.clock').FlipClock(countdown.seconds, {
+    countdown: true
+  });
+</script>

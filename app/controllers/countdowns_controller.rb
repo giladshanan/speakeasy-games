@@ -13,7 +13,9 @@ class CountdownsController < ApplicationController
         lockout_seconds: 60, # half the initial lockout time, in seconds
         lockout_increment: 2, # coefficient for incrementing
         guesses: 0,
-        code: "10762801815",
+        disarm_code: "10762801815",
+        launch_code: "12636956321",
+        active: true,
         )
     end
     redirect_to countdown_path(@countdown), alert: @alert
@@ -21,39 +23,50 @@ class CountdownsController < ApplicationController
 
   def show
     @countdown = Countdown.find(params[:id])
-    #TODO if the correct answer is guessed before time runs out, the timer will show 0 time left but you still cannot start a new timer until the time is up
-    #TODO what if the timer runs out while on lockdown?
-    #TODO refactor lockdowns into seperate object
-
-    # ask John:
-    # flashing 2 min warning
-    # different color?
     grace_period = 120 # seconds
-    if @countdown.seconds != 0 && @countdown.lockout_remaining > 0 && @countdown.time_remaining > grace_period
-      if @countdown.lockout_remaining > @countdown.time_remaining - grace_period
-        @countdown.seconds = @countdown.time_remaining - grace_period
+    if @countdown.seconds == 0
+      if @countdown.active == true
+        render layout: false
       else
-        @countdown.seconds = @countdown.lockout_remaining
+        @alert = "Disarm Code Verified."
+        redirect_to "/countdowns/#{@countdown.id}/ending", alert: @alert
       end
-    elsif @countdown.seconds != 0
-      @countdown.seconds = @countdown.time_remaining
+    else
+      if @countdown.lockout_remaining > 0 && @countdown.time_remaining > grace_period
+        if @countdown.lockout_remaining > @countdown.time_remaining - grace_period
+          @countdown.seconds = @countdown.time_remaining - grace_period
+        else
+          @countdown.seconds = @countdown.lockout_remaining
+        end
+      else
+        @countdown.seconds = @countdown.time_remaining
+      end
+
+      @countdown.save
+
+      if @countdown.time_remaining < grace_period && @countdown.time_remaining > 0
+        flash.now[:alert] = "Launch Imminent!"
+      elsif @countdown.lockout_remaining > 0 && @countdown.time_remaining > 0
+        flash.now[:alert] = "Incorrect Disarm Code. System Locked."
+      end
+      render layout: false
     end
-    @countdown.save
-    if @countdown.time_remaining < grace_period && @countdown.time_remaining > 0
-      flash.now[:alert] = "Time is almost up!"
-    elsif @countdown.lockout_remaining > 0 && @countdown.time_remaining > 0
-      flash.now[:alert] = "Incorrect Code. System Locked."
-    end
-    render layout: false
   end
 
   def search
     @countdown = Countdown.find(params[:id])
-    if params[:q] == @countdown.code
+    if params[:q] == @countdown.disarm_code && @countdown.active == true
       @countdown.seconds = 0
+      @countdown.pause_started_at = Time.current
+      @countdown.active = false
       @countdown.save
-      @alert = "Correct!"
-      redirect_to countdowns_path, alert: @alert
+      @alert = "Disarm Code Verified."
+      redirect_to "/countdowns/#{@countdown.id}/ending", alert: @alert
+    elsif params[:q] == @countdown.launch_code && @countdown.active == false
+      render partial: 'confirm'
+    elsif @countdown.active == false
+      @alert = "Incorrect Launch Code.  Countdown Paused."
+      redirect_to "/countdowns/#{@countdown.id}/ending", alert: @alert
     else
       @countdown.guesses += 1
       @countdown.lockout_seconds *= @countdown.lockout_increment
@@ -64,7 +77,26 @@ class CountdownsController < ApplicationController
     end
   end
 
+  def ending
+    @countdown = Countdown.find(params[:id])
+
+    if @countdown.active == true
+      redirect_to countdown_path(@countdown)
+    elsif params[:launch] == @countdown.launch_code
+      @countdown.pause_ended_at = Time.current
+      @countdown.total_time += @countdown.pause_duration
+      @countdown.seconds = @countdown.time_remaining
+      @countdown.active = true
+      @countdown.save
+      @alert = "Launch Code Verified. Countdown Resumed."
+      redirect_to countdown_path(@countdown), alert: @alert
+    else
+      @alert = "Countdown Paused."
+      render layout: false, alert: @alert
+    end
+  end
+
   def index
-    render layout: false
+    redirect_to user_path(current_user)
   end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180416050300) do
+ActiveRecord::Schema.define(version: 20180428182319) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,13 +19,18 @@ ActiveRecord::Schema.define(version: 20180416050300) do
     t.integer "lockout_seconds"
     t.integer "lockout_increment"
     t.integer "guesses"
-    t.string "code"
+    t.string "disarm_code"
     t.bigint "purchased_game_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "seconds"
     t.float "total_time"
     t.datetime "lockout_started_at"
+    t.string "launch_code"
+    t.boolean "active"
+    t.datetime "pause_started_at"
+    t.datetime "pause_ended_at"
+    t.index ["active", "purchased_game_id"], name: "index_countdowns_on_active_and_purchased_game_id", unique: true
     t.index ["purchased_game_id"], name: "index_countdowns_on_purchased_game_id"
   end
 

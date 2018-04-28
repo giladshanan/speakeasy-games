@@ -7,5 +7,6 @@ Rails.application.routes.draw do
   resources :charges
   resources :orders
   resources :countdowns, only: [:create, :show, :index]
-  get 'countdowns/:id/search' => 'countdowns#search'
+  get 'countdowns/:id/search' => 'countdowns#search', as: "search_path"
+  get 'countdowns/:id/ending' => 'countdowns#ending', as: "ending_path"
 end

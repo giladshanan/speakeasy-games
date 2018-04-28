@@ -8,7 +8,45 @@
   transform: translate(-50%, -0%)
 }
 
+#paradise {
+  position: absolute;
+  width: 100%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -0%);
+}
+
+#confirm {
+  position: absolute;
+  top: 15em;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -0%)
+}
+
+#pause-form {
+  display: none;
+}
+
+#game-over {
+  position: absolute;
+  width: 75%;
+  top: 10em;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -0%)
+}
+
+#island {
+  position: absolute;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -0%);
+  z-index: -1;
+}
+
 #text-input {
+  background-color: white;
   position: absolute;
   top: 25em;
   left: 50%;

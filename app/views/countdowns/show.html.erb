@@ -36,9 +36,11 @@
 
   <div id="text-input">
     <p></p>
-    <%= form_tag("#{@countdown.id}/search", method: "get") do %>
-      <%= label_tag(:q, "Please enter the code:") %>
-      <%= text_field_tag(:q, nil, placeholder: "-" * @countdown.code.length) %>
+    <%= form_tag("/countdowns/#{@countdown.id}/search", method: "get") do %>
+      <%= label_tag(:q, "Please enter the disarm code:") %>
+      <p style="text-align:center;">
+        <%= text_field_tag(:q, nil, style: "text-align:center;", placeholder: "-" * @countdown.disarm_code.length) %>
+      </p>
       <%= submit_tag "Submit", style: "display:none;" %>
     <% end %>
   </div>
@@ -54,7 +56,7 @@
   $('#q').bind('input propertychange', function() {
     var input = $("#q").val().replace(/-/g, "");
     var position = input.length
-    var times = countdown.code.length - position;
+    var times = countdown.disarm_code.length - position;
     var new_input_text = input
     for(var i=0; i < times; i++){
       new_input_text += "-";

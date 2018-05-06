@@ -65,7 +65,7 @@ class CountdownsController < ApplicationController
     elsif params[:q] == @countdown.launch_code && @countdown.active == false
       render partial: 'confirm'
     elsif @countdown.active == false
-      @alert = "Incorrect Launch Code.  Countdown Paused."
+      @alert = "Incorrect Launch Code."
       redirect_to "/countdowns/#{@countdown.id}/ending", alert: @alert
     else
       @countdown.guesses += 1

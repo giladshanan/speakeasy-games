@@ -15,10 +15,10 @@
     <p class="alert" style="text-align:center; font-size:large"><%= alert %></p>
     <p style="text-align:center; font-size:large">Countdown Paused.</p>
     <p></p>
-    <%= form_tag("/countdowns/#{@countdown.id}/search", method: "get", id:"pause-form") do %>
+    <%= form_tag("/countdowns/#{@countdown.id}/search", method: "get", id:"pause-form", autocomplete:"off") do %>
       <%= label_tag(:q, "Please enter the launch code to resume countdown sequence:") %>
       <p style="text-align:center;">
-        <%= text_field_tag(:q, nil, style: "text-align:center;", placeholder: "-" * @countdown.launch_code.length) %>
+        <%= text_field_tag(:q, nil, style: "text-align:center;", placeholder: "-" * @countdown.launch_code.length, autocomplete:"off") %>
       </p>
       <%= submit_tag "Submit", style: "display:none;" %>
     <% end %>

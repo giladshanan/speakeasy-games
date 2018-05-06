@@ -8,7 +8,7 @@ class Countdown < ApplicationRecord
   end
 
   def lockout_remaining
-    output = (self.lockout_seconds) - (Time.current.to_i - self.lockout_started_at.to_i)
+    output = self.lockout_started_at.to_i + self.lockout_seconds - Time.current.to_i
     output >= 0 ? output : 0
   end
 

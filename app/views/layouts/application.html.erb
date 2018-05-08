@@ -27,8 +27,19 @@
       <div class="w3-padding-64 w3-large w3-text-grey" style="font-weight:bold">
         <%= link_to "How Does This Work?", orders_path, class: "w3-bar-item w3-button w3-text-light-blue" %>
         <% if @games %>
-          <% @games.each do | game | %>
-            <%= link_to game.title, game_path(game), class: "w3-bar-item w3-button" %>
+
+          <% if @games.active.count > 0 %>
+            <p class="w3-container w3-small w3-text-blue">Ready to Play:</p>
+            <% @games.active.each do | game | %>
+              <%= link_to game.title, game_path(game), class: "w3-bar-item w3-button w3-text-blue" %>
+            <% end %>
+          <% end %>
+
+          <% if @games.coming_soon.count > 0 %>
+            <p class="w3-container w3-small">Coming Soon:</p>
+            <% @games.coming_soon.each do | game | %>
+              <%= link_to game.title, game_path(game), class: "w3-button w3-bar-item w3-medium w3-text-grey" %>
+            <% end %>
           <% end %>
         <% end %>
       </div>

@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   root to: "games#index"
   resources :games, only: [:index, :show, :new, :edit, :update, :destroy]
   resources :photos, only: [:destroy]
+  resources :cover_photos, only: [:destroy]
+  resources :testimonials, only: [:destroy]
   resources :charges
   resources :orders
   resources :countdowns, only: [:create, :show, :index]

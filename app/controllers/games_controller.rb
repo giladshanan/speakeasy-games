@@ -12,6 +12,7 @@ class GamesController < ApplicationController
 
   def edit
     @game = Game.find(params[:id])
+    @game.testimonials.build
   end
 
   def update
@@ -42,6 +43,6 @@ class GamesController < ApplicationController
   end
 
   def game_params
-    params.require(:game).permit(:images, :title, :teaser, :included, :not_included, :difficulty, :price, :notes, :packet)
+    params.require(:game).permit(:images, :title, :teaser, :included, :not_included, :difficulty, :price, :notes, :packet, {:testimonials_attributes => [:description, :id]})
   end
 end

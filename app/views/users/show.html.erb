@@ -9,6 +9,8 @@
     <%= button_to("Begin Countdown", countdowns_path, params: {purchased_game_id: PurchasedGame.first.id}, class: "w3-grey w3-center w3-button" ) %>
   <% end %><br>
   <%= link_to "Update My Account Information", edit_user_path(current_user) %>
+  <br>
+  <%= link_to "Change My password", edit_user_registration_path %>
 </div>
 <div>
   <ul>

@@ -51,6 +51,7 @@ group :development, :test do
   gem 'simplecov', :require => false
   gem 'dotenv-rails'
   gem 'better_errors'
+  gem 'pry'
 end
 
 group :development do

@@ -1,23 +1,20 @@
 class CharactersController < ApplicationController
   before_action :authenticate_user!
   before_action :find_game
-  before_action :host_only#, :except => [:show, :edit, :update]
+  before_action :host_only
 
-  def index
-    # @order = 
-  end
+  def index; end
 
   def invite
-    invite_params.each do |character_id, email|
-      new_user = User.create(email: email, password: temp?)
-      new_user.characters << Character.find(character_id)
-      new_user.games << @game
-      # send invitation
+    invite_params[:assignments].each do |character_id, email|
+      User.invite!(email: email, characters: [Character.find(character_id)]) if email
     end
+    redirect_to game_characters_path(@game)
   end
 
   private
 
+  # TODO- make this clearer and stronger
   def host_only
     unless current_user.games.include?(@game)
       redirect_to root_path, :alert => "Access denied."
@@ -29,7 +26,7 @@ class CharactersController < ApplicationController
   end
 
   def invite_params
-    params.require(:invites).permit(:assignments)
+    params.require(:invites).permit(assignments: {})
   end
 
 end

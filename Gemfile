@@ -39,6 +39,7 @@ gem "paperclip"
 gem 'aws-sdk'#, '~> 2.3.0'
 gem 'aws-sdk-s3'
 gem 'devise'
+gem 'devise_invitable'
 
 gem 'rails_12factor', group: :production
 

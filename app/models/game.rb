@@ -1,6 +1,7 @@
 class Game < ApplicationRecord
   has_many :testimonials, dependent: :nullify
   has_many :photos
+  has_many :characters
   has_one  :cover_photo, dependent: :nullify
 
   accepts_nested_attributes_for :testimonials, allow_destroy: true, :reject_if => lambda { |a| a[:description].blank? } # this prevents empty testimonials from getting saved

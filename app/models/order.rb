@@ -1,5 +1,6 @@
 class Order < ApplicationRecord
   belongs_to :user
+  belongs_to :character
   has_many :purchased_games
   has_many :games, through: :purchased_games
 

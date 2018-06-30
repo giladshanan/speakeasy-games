@@ -10,10 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180428182319) do
+ActiveRecord::Schema.define(version: 20180630054837) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "characters", force: :cascade do |t|
+    t.string "name"
+    t.bigint "game_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "player_packet_file_name"
+    t.string "player_packet_content_type"
+    t.integer "player_packet_file_size"
+    t.datetime "player_packet_updated_at"
+    t.index ["game_id"], name: "index_characters_on_game_id"
+  end
 
   create_table "countdowns", force: :cascade do |t|
     t.integer "lockout_seconds"
@@ -66,6 +78,16 @@ ActiveRecord::Schema.define(version: 20180428182319) do
     t.datetime "packet_updated_at"
   end
 
+  create_table "invites", force: :cascade do |t|
+    t.string "email"
+    t.integer "character_id"
+    t.integer "sender_id"
+    t.integer "recipient_id"
+    t.string "token"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "orders", force: :cascade do |t|
     t.integer "total"
     t.boolean "complete"
@@ -73,6 +95,7 @@ ActiveRecord::Schema.define(version: 20180428182319) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "purchased_at"
+    t.integer "character_id"
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
@@ -139,6 +162,7 @@ ActiveRecord::Schema.define(version: 20180428182319) do
 
   add_foreign_key "countdowns", "purchased_games"
   add_foreign_key "cover_photos", "games"
+  add_foreign_key "orders", "characters"
   add_foreign_key "orders", "users"
   add_foreign_key "photos", "games"
   add_foreign_key "purchased_games", "games"

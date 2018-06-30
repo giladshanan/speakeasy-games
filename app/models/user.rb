@@ -2,7 +2,10 @@ class User < ApplicationRecord
   enum role: [:user, :admin]
   after_initialize :set_default_role, :if => :new_record?
   has_many :orders
+  has_many :characters, through: :orders
   has_many :games, through: :orders
+  has_many :invitations, :class_name => "Invite", :foreign_key => 'recipient_id'
+  has_many :sent_invites, :class_name => "Invite", :foreign_key => 'sender_id'
 
   def set_default_role
     self.role ||= :user

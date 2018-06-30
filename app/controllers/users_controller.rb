@@ -8,6 +8,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @invite = Invite.new()
     @orders = @user.orders.where(complete:true)
     unless current_user.admin?
       unless @user == current_user

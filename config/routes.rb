@@ -8,7 +8,6 @@ Rails.application.routes.draw do
   resources :testimonials, only: [:destroy]
   resources :charges
   resources :orders
-  resources :invites
   resources :countdowns, only: [:create, :show, :index]
   get 'countdowns/:id/search' => 'countdowns#search', as: "search_path"
   get 'countdowns/:id/ending' => 'countdowns#ending', as: "ending_path"

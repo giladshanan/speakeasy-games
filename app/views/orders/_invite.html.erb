@@ -1,8 +1,0 @@
-<%= form_for @order , :url => invites_path do |f| %>
-  <% #think more about the logic below %>
-  <%= f.hidden_field :character_id, :value => character.id %>
-  <div>Character: <%= character.name %></div>
-  <%= f.label :email %>
-  <%= f.email_field :email %>
-  <%= f.submit 'Send' %>
-<% end %>

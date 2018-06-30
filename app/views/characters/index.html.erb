@@ -1,0 +1,8 @@
+<div>
+  <%= form_for "invite", url: invite_path_url do |f| %>
+    <% @game.characters.each do |character| %>
+      <%= render "invite", f: f, character: character %>
+    <% end %>
+    <%= f.submit 'Send' %>
+  <% end %>
+</div>

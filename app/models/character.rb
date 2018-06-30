@@ -1,6 +1,5 @@
 class Character < ApplicationRecord
   belongs_to :game
-  has_many :invites
   has_many :orders
   has_many :users, through: :orders
 

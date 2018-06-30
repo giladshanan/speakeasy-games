@@ -5,7 +5,7 @@
   <% if current_user.admin? %>
     <%= link_to "Manage Users", users_path, class: "w3-grey w3-center w3-button" %>
     <p></p>
-    <!-- temporary location for the countdown button -->
+    <!-- backup countdown button for admins only -->
     <%= button_to("Begin Countdown", countdowns_path, params: {purchased_game_id: PurchasedGame.first.id}, class: "w3-grey w3-center w3-button" ) %>
   <% end %><br>
   <%= link_to "Update My Account Information", edit_user_path(current_user) %>
@@ -17,12 +17,15 @@
   <% @orders.each do |order| %>
     <div class="w3-card">
       <p>Total amount: <%= number_to_currency(order.total/100) %></p>
-      <p>Purchased on <%= order.purchased_at.to_formatted_s(:month_day_comma_year) + " at " + order.purchased_at.to_formatted_s(:time_am_pm) if order.purchased_at %></p>
+      <% if order.purchased_at %>
+        <p>Purchase date: <time datetime="<%= order.purchased_at %>" class="local_time"></time></p>
+      <% end %>
       <ul>
         <% order.games.each do |game| %>
           <p><%= link_to game.title, game_path(game) %></p>
-          <!-- countdown button will go here -->
-          <%= button_to("Begin Countdown", countdowns_path, params: {purchased_game_id: PurchasedGame.where(game: game, order: order).first.id}, class: "w3-grey w3-center w3-button" ) %>
+          <% if game.countdown? %>
+            <%= button_to("Begin Countdown", countdowns_path, params: {purchased_game_id: PurchasedGame.where(game: game, order: order).first.id}, class: "w3-grey w3-center w3-button" ) %>
+          <% end %>
         <% end %>
       </ul>
     </div>

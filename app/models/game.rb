@@ -17,6 +17,12 @@ class Game < ApplicationRecord
      packet.url != "nil"
   end
 
+  def countdown?
+    title == "Cuban Missile Crisis: Again!"
+  end
+
+  private
+
   def skip_for_zip
      ! %w(application/zip application/x-zip application/x-zip-compressed).include?(packet_content_type)
   end

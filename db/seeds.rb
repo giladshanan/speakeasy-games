@@ -37,19 +37,19 @@
 #   prep_time: 3
 # )
 
-visconte = Game.create(
-  title: "Visconte's Speakeasy",
-  teaser: "Wise guys have been disappearing, and nobody can figure out why. The two major families are meeting to negotiate a truce and solve the murders. Of course, there are all kinds of different agendas, plus opportunistic hangers-on, cops, low-lives, and politicians, and that's just one person!",
-  included: "Invitations; rules; detailed character notes for 12 different roles, including backstory, goals, and specific knowledge about other characters; printable paper props; decorating and site layout suggestions; detailed instructions for hosts; prop list",
-  not_included: "Most physical materials, including character props",
-  difficulty: "Medium",
-  notes: "Not much is needed in the way of decoration, but there's a bit of involved prop work. This game is more prone to end in a shootout than others.",
-  price: 100,
-  player_min: 16,
-  player_max: 20,
-  play_time: 3,
-  prep_time: 3
-)
+# visconte = Game.create(
+#  title: "Visconte's Speakeasy",
+#  teaser: "Wise guys have been disappearing, and nobody can figure out why. The two major families are meeting to negotiate a truce and solve the murders. Of course, there are all kinds of different agendas, plus opportunistic hangers-on, cops, low-lives, and politicians, and that's just one person!",
+# included: "Invitations; rules; detailed character notes for 12 different roles, including backstory, goals, and specific knowledge about other characters; printable paper props; decorating and site layout suggestions; detailed instructions for hosts; prop list",
+# not_included: "Most physical materials, including character props",
+#  difficulty: "Medium",
+#  notes: "Not much is needed in the way of decoration, but there's a bit of involved prop work. This game is more prone to end in a shootout than others.",
+#  price: 100,
+#  player_min: 16,
+#  player_max: 20,
+#  play_time: 3,
+#  prep_time: 3
+#)
 
 # end_of_days = Game.create(
 #   title: "End of Days",
@@ -79,15 +79,41 @@ visconte = Game.create(
 #   prep_time: 3
 # )
 
-test = "What is it about me dealing sidearms that makes everyone a hero? There
-I was, in the alley behind (what was the name of the speakeasy?), with
-this hot young tomato pointing a stinkin' derringer at me.
-\n
-\"Hand over the gun!\" she said.
-\n
-\"Sure thing, sweetie. You got me.\"
-\n
-I reached into my bag to hand over my piece, only the gun stayed in
-the bag. The bullets didn't."
+# test = "What is it about me dealing sidearms that makes everyone a hero? There
+# I was, in the alley behind (what was the name of the speakeasy?), with
+# this hot young tomato pointing a stinkin' derringer at me.
+# \n
+# \"Hand over the gun!\" she said.
+# \n
+# \"Sure thing, sweetie. You got me.\"
+# \n
+# I reached into my bag to hand over my piece, only the gun stayed in
+# the bag. The bullets didn't."
 
-Testimonial.create(description: test, game: visconte)
+# Testimonial.create(description: test, game: visconte)
+
+game = Game.find_by(title: "The Silver of Burnt Grass")
+
+a = [ "Bartender Dobbs",
+  "Director McFeery",
+  "Gambler Thibodeaux",
+  "Madame LeFleur",
+  "Mayor Tully",
+  "Miner Parsons",
+  "Mrs. Parsons",
+  "Outlaw Carson",
+  "Outlaw Lyles",
+  "Preacher Gabriel",
+  "Preacher Lewis",
+  "Rancher O\'Donnell",
+  "Rancher Vanderbilt",
+  "Sheriff Wood",
+  "Trusty Tate"]
+
+  a.each do |char|
+    Character.create(
+      name: char,
+      game_id: game.id,
+      player_packet: File.new(Rails.root.join("..","..", "BurntGrass", "Character Packets", "#{char}.pdf")
+    ))
+  end

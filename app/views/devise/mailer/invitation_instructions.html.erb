@@ -1,0 +1,11 @@
+<h1>You've been invited to play <%= @resource.characters.first.game.title %>!</h1>
+<p>Hello <%= @resource.email %></p>
+<p>
+  Your friend <%= @resource.invited_by.full_name %> has invited you to play the role of <%= @resource.characters.first.name %> in <%= @resource.characters.first.game.title %>, by Speakeasy Games. To accept the invitation and create a new account at Speakeasy Games, just follow this <%= link_to("link", accept_invitation_url(@resource, :invitation_token => @token)) %>.  Your account won't be created until you access the link above and set your password.
+</p>
+<p>
+  You can download your character packet <%= link_to("here", @resource.characters.first.player_packet.url) %>. We hope you enjoy playing!  Please don't hesitate to contact us with any questions you may have as you get prepared to play.
+</p>
+<p>Thanks for playing and have a great day!</p>
+<p>Sincerely,</p>
+<p>The Speakeasy Team</p>

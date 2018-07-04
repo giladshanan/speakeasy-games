@@ -6,6 +6,8 @@ class Game < ApplicationRecord
 
   accepts_nested_attributes_for :testimonials, allow_destroy: true, :reject_if => lambda { |a| a[:description].blank? } # this prevents empty testimonials from getting saved
 
+  accepts_nested_attributes_for :characters, allow_destroy: true, reject_if: lambda { |a| a[:player_packet].blank? && a[:name].blank? } # this prevents empty characters from getting saved
+
   has_attached_file :packet, default_url: "nil"
   validates_attachment_content_type :packet, :content_type => ["application/zip", "application/x-zip", "application/x-zip-compressed"]
 

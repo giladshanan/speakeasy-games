@@ -61,31 +61,63 @@
       <h2>Testimonials:</h2>
       <p>Use the box below to add a new testimonial.  Just one at a time for now.  An empty box will not create a new testimonial.</p>
       <% @game.testimonials.select {|t| t.id == nil}.each do |testimonial| %>
-        <%= form.fields_for :testimonials, testimonial do |builder| %>
-          <%= render "testimonial_fields", f: builder %>
+        <%= form.fields_for :testimonials, testimonial do |ff| %>
+          <%= render "testimonial_fields", ff: ff %>
         <% end %>
       <% end %>
 
       <p>Use the box(es) below to edit or delete existing testimonials.</p>
       <% @game.testimonials.order(created_at: :desc).each do |testimonial| %>
-        <%= form.fields_for :testimonials, testimonial do |builder| %>
-          <%= render "testimonial_fields", f: builder %>
+        <%= form.fields_for :testimonials, testimonial do |ff| %>
+          <%= render "testimonial_fields", ff: ff %>
           <%= link_to "Delete Testimonial", testimonial_path(testimonial), method: "DELETE", :data => {:confirm => 'Are you sure you want to delete this testimonial?'} %>
         <% end %>
       <% end %>
 
     </div>
+
     <h2>Host Packet:</h2>
-      <% if @game.has_packet? %>
-        <p><%=@game.packet%></p>
-        <%= link_to("Download", @game.packet.url) %>
-      <% end %>
-      <div>
-        <%= form.file_field :packet %>
-      </div>
+    <% if @game.has_packet? %>
+      <p><%=@game.packet%></p>
+      <%= link_to("Download", @game.packet.url) %>
+    <% end %>
     <div>
-      <%= form.submit %>
+      <%= form.file_field :packet %>
     </div>
+
+    <h2>Player Packets:</h2>
+    <p>Use the box below to add a new character.  Just one at a time for now.  An empty box will not create a new character.</p>
+    <% @game.characters.select {|c| c.id == nil}.each do |character| %>
+      <%= form.fields_for :characters, character do |ff| %>
+        <%= render "character_fields", ff: ff %>
+      <% end %>
+    <% end %>
+
+    <p>Use the fields below to edit or delete existing characters:</p>
+    <% @game.characters.select {|c| c.id != nil}.each do |character| %>
+      <%= form.fields_for :characters, character do |ff| %>
+        <p>
+          <%= ff.label :name %>
+          <%= ff.text_field :name %>
+        </p>
+        <p>
+          <p>Current URL: <%= ff.object.player_packet %></p>
+          <p><%= link_to("Download Current Player Packet", ff.object.player_packet.url) %></p>
+          <%= ff.label :update_player_packet %>
+          <%= ff.file_field :player_packet %>
+
+          <% if ff.object.persisted? %>
+            <%= ff.check_box :_destroy %>
+            <%= ff.label :_destroy, "Destroy" %>
+          <% end %>
+        </p>
+        <p>------------------------------------------------------------------</p>
+      <% end %>
+    <% end %>
+
+    <p>
+      <%= form.submit %>
+    </p>
   <% end %>
 </div>
 <div>

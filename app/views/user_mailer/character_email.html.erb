@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>You've been invited to play <%= @game.title %>!</h1>
+    <p>
+      Your friend <%= @inviter.full_name %> has invited you to play the role of <%= @character.name %> in <%= @game.title %>.  You can download your character packet <%= link_to("here", @character.player_packet.url) %>.
+    </p>
+    <p>
+      We hope you enjoy playing!  Please don't hesitate to contact us with any questions you may have as you get prepared to play.
+    </p>
+    <p>Thanks for playing and have a great day!</p>
+    <p>Sincerely,</p>
+    <p>The Speakeasy Team</p>
+  </body>
+</html>

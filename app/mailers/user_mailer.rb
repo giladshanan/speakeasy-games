@@ -8,4 +8,12 @@ class UserMailer < ApplicationMailer
     # attachments['SilverGrass.zip'] = File.read('public/SilverGrass.zip')
     mail(to: @user.email, subject: 'Your Recent Order From Speakeasy Games!')
   end
+
+  def character_email(user, inviter, game, character)
+    @user = user
+    @game = game
+    @inviter = inviter
+    @character = character
+    mail(to: @user.email, subject: "Your Invitation from Speakeasy Games")
+  end
 end

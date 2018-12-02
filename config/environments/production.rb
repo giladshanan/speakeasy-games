@@ -21,7 +21,7 @@ Rails.application.configure do
 
   # Disable serving static files from the `/public` folder by default since
   # Apache or NGINX already handles this.
-  config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
+  config.public_file_server.enabled = ENV["RAILS_SERVE_STATIC_FILES"].present?
 
   # Compress JavaScripts and CSS.
   config.assets.js_compressor = :uglifier
@@ -33,16 +33,16 @@ Rails.application.configure do
   # `config.assets.precompile` and `config.assets.version` have moved to config/initializers/assets.rb
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
-  # config.action_controller.asset_host = 'http://assets.example.com'
+  # config.action_controller.asset_host = "http://assets.example.com"
 
   # Specifies the header that your server uses for sending files.
-  # config.action_dispatch.x_sendfile_header = 'X-Sendfile' # for Apache
-  # config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for NGINX
+  # config.action_dispatch.x_sendfile_header = "X-Sendfile" # for Apache
+  # config.action_dispatch.x_sendfile_header = "X-Accel-Redirect" # for NGINX
 
   # Mount Action Cable outside main process or domain
   # config.action_cable.mount_path = nil
-  # config.action_cable.url = 'wss://example.com/cable'
-  # config.action_cable.allowed_request_origins = [ 'http://example.com', /http:\/\/example.*/ ]
+  # config.action_cable.url = "wss://example.com/cable"
+  # config.action_cable.allowed_request_origins = [ "http://example.com", /http:\/\/example.*/ ]
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   # config.force_ssl = true
@@ -70,17 +70,18 @@ Rails.application.configure do
   config.action_mailer.default :charset => "utf-8"
 
   # Recommended by Devise setup docs.
-  config.action_mailer.default_url_options = { host: 'speakeasy-games.herokuapp.com' }
+  config.action_mailer.default_url_options = { host: "speakeasy-games.herokuapp.com" }
 
   config.action_mailer.delivery_method = :smtp
   # STMP settings for gmail
   config.action_mailer.smtp_settings = {
         :address          => "smtp.gmail.com",
+        :domain           => "speakeasy-games.herokuapp.com",
         :port             => 2525,
         :ssl              => true,
-        :user_name        => ENV['GMAIL_USERNAME'],
-        :password         => ENV['GMAIL_PASSWORD'],
-        :authentication   => "plain",
+        :user_name        => ENV["GMAIL_USERNAME"],
+        :password         => ENV["GMAIL_PASSWORD"],
+        :authentication   => "login",
         :enable_starttls_auto => true,
         :openssl_verify_mode => "none"
   }
@@ -96,8 +97,8 @@ Rails.application.configure do
   config.log_formatter = ::Logger::Formatter.new
 
   # Use a different logger for distributed setups.
-  # require 'syslog/logger'
-  # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new 'app-name')
+  # require "syslog/logger"
+  # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new "app-name")
 
   if ENV["RAILS_LOG_TO_STDOUT"].present?
     logger           = ActiveSupport::Logger.new(STDOUT)

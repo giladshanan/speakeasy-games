@@ -19,7 +19,7 @@
     <div class="w3-col l3 s6", style="display: table-cell; height:400px">
       <div class="w3-container">
         <% if game.cover_photo %>
-          <%= image_tag(game.cover_photo.img.url(:medium), style:"width:100%") %>
+          <%= image_tag(game.cover_photo.img.url(:medium), style:"width:100%", onerror: "this.style.display='none'") %>
         <% else %>
           <%= image_tag "cowboy.jpg", alt:"Yippe Kayay!", style:"width:100%" %>
         <% end %>

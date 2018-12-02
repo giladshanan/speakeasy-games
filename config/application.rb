@@ -28,7 +28,12 @@ module Speakeasygames
     # Don't generate system test files.
     config.generators.system_tests = nil
 
-    config.active_job.queue_adapter = :sidekiq
+    config.exception_handler = {
+      exceptions: {
+        # :all => { layout: 'exception' },
+        500  => { layout: nil } # -> this overrides the 5xx declaration
+      }
+    }
 
     config.paperclip_defaults = {
       storage: :s3,

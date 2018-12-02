@@ -76,7 +76,6 @@ Rails.application.configure do
   # STMP settings for gmail
   config.action_mailer.smtp_settings = {
         :address          => "smtp.gmail.com",
-        # :domain           => "speakeasy-games.herokuapp.com",
         :port             => 465,
         :ssl              => true,
         :user_name        => ENV["GMAIL_USERNAME"],

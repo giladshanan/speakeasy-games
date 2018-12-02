@@ -77,11 +77,11 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
         :address          => "smtp.gmail.com",
         # :domain           => "speakeasy-games.herokuapp.com",
-        :port             => 2525,
+        :port             => 465,
         :ssl              => true,
         :user_name        => ENV["GMAIL_USERNAME"],
         :password         => ENV["GMAIL_PASSWORD"],
-        :authentication   => "plain",
+        :authentication   => "login",
         :enable_starttls_auto => true,
         # :openssl_verify_mode => "none"
   }

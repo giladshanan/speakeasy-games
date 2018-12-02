@@ -12,6 +12,14 @@ Rails.application.configure do
   # Show full error reports.
   config.consider_all_requests_local = true
 
+  config.exception_handler = {
+    dev: false,
+    exceptions: {
+      # :all => { layout: 'exception' },
+      500  => { layout: nil } # -> this overrides the 5xx declaration
+    }
+    # exceptions: { action: {redirect_to root_path} }
+  }
   # Enable/disable caching. By default caching is disabled.
   if Rails.root.join('tmp/caching-dev.txt').exist?
     config.action_controller.perform_caching = true

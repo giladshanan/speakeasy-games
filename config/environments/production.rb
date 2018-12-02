@@ -74,6 +74,9 @@ Rails.application.configure do
 
   config.action_mailer.delivery_method = :smtp
   # STMP settings for gmail
+  # Before debugging these config settings, visit
+  # https://accounts.google.com/DisplayUnlockCaptcha
+  # as explained here- https://stackoverflow.com/questions/36095442
   config.action_mailer.smtp_settings = {
         :address          => "smtp.gmail.com",
         :port             => 465,

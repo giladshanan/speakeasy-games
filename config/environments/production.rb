@@ -77,13 +77,13 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
         :address          => "smtp.gmail.com",
         # :domain           => "speakeasy-games.herokuapp.com",
-        :port             => 465,
+        :port             => 2525,
         :ssl              => true,
         :user_name        => ENV["GMAIL_USERNAME"],
         :password         => ENV["GMAIL_PASSWORD"],
         :authentication   => "login",
         :enable_starttls_auto => true,
-        # :openssl_verify_mode => "none"
+        :openssl_verify_mode => "none"
   }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to

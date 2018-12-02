@@ -40,7 +40,7 @@ gem 'aws-sdk'#, '~> 2.3.0'
 gem 'aws-sdk-s3'
 gem 'devise'
 gem 'devise_invitable'
-
+gem 'sidekiq'
 gem 'rails_12factor', group: :production
 
 group :development, :test do

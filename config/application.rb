@@ -28,6 +28,8 @@ module Speakeasygames
     # Don't generate system test files.
     config.generators.system_tests = nil
 
+    config.active_job.queue_adapter = :sidekiq
+
     config.paperclip_defaults = {
       storage: :s3,
       preserve_files: true,
